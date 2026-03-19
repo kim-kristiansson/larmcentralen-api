@@ -1,0 +1,45 @@
+﻿using Larmcentralen.Domain.Entities;
+using Larmcentralen.Domain.Interfaces;
+using Larmcentralen.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
+
+namespace Larmcentralen.Infrastructure.Repositories;
+
+public class AlarmRepository(AppDbContext db) : Repository<Alarm>(db), IAlarmRepository
+{
+    public async Task<List<Alarm>> SearchAsync(string? search, int? equipmentId, string? severity)
+    {
+        var query = Db.Alarms
+            .Include(a => a.Equipment)
+            .ThenInclude(e => e.Area)
+            .AsQueryable();
+
+        if (equipmentId.HasValue)
+            query = query.Where(a => a.EquipmentId == equipmentId.Value);
+
+        if (!string.IsNullOrWhiteSpace(search))
+            query = query.Where(a =>
+                a.Title.Contains(search) ||
+                (a.AlarmCode != null && a.AlarmCode.Contains(search)));
+
+        if (!string.IsNullOrWhiteSpace(severity))
+            query = query.Where(a => a.Severity == severity);
+
+        return await query.OrderBy(a => a.Title).ToListAsync();
+    }
+
+    public async Task<Alarm?> GetByIdWithDetailsAsync(int id)
+    {
+        return await Db.Alarms
+            .Include(a => a.Equipment)
+            .ThenInclude(e => e.Area)
+            .Include(a => a.Solutions.OrderBy(s => s.SortOrder))
+            .FirstOrDefaultAsync(a => a.Id == id);
+    }
+
+    public async Task<bool> ExistsAsync(string alarmCode, int equipmentId)
+    {
+        return await Db.Alarms
+            .AnyAsync(a => a.AlarmCode == alarmCode && a.EquipmentId == equipmentId);
+    }
+}
