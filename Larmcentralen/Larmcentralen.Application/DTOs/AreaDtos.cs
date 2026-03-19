@@ -1,6 +1,6 @@
 ﻿namespace Larmcentralen.Application.DTOs;
 
-public record AreaDtos(
+public record AreaDto(
     int Id,
     string Title,
     string? DisplayName,

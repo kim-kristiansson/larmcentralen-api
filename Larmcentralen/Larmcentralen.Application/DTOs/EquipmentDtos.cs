@@ -1,6 +1,6 @@
 ﻿namespace Larmcentralen.Application.DTOs;
 
-public record EquipmentDtos(
+public record EquipmentDto(
     int Id,
     string Title,
     string? DisplayName,
