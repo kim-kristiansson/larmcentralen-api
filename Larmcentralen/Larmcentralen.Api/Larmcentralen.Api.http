@@ -1,6 +1,5 @@
-@Larmcentralen.Api_HostAddress = http://localhost:5020
+@Larmcentralen.Api_HostAddress = http://localhost:5270
 
-GET {{Larmcentralen.Api_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
