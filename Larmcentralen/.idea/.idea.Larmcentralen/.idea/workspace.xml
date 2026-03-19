@@ -8,10 +8,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eda7e45f-b65e-4849-981e-42d7c582da1a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Larmcentralen/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Larmcentralen/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Larmcentralen.sln" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.sln" afterDir="false" />
-    </list>
+    <list default="true" id="eda7e45f-b65e-4849-981e-42d7c582da1a" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,16 +17,24 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Larmcentralen.Domain/Entities/Area.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Larmcentralen.Domain/Entities/Solution.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 8
 }]]></component>
   <component name="ProjectId" id="3B8nCVNp7oRnuhYTdrhIYDWaKqy" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    ".NET Launch Settings Profile.Larmcentralen.Api: http.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
@@ -84,7 +89,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1773879438852</updated>
-      <workItem from="1773879439767" duration="993000" />
+      <workItem from="1773879439767" duration="1288000" />
     </task>
     <servers />
   </component>
