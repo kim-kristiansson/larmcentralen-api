@@ -8,11 +8,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eda7e45f-b65e-4849-981e-42d7c582da1a" name="Changes" comment="" />
+    <list default="true" id="eda7e45f-b65e-4849-981e-42d7c582da1a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Larmcentralen.Domain/Entities/Alarm.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Larmcentralen.Domain/Entities/Solution.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Domain/Entities/Solution.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DpaMonitoringSettings">
+    <option name="firstShow" value="false" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -20,6 +26,10 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Domain/Entities/Area.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Domain/Entities/Solution.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Larmcentralen.Domain/Interfaces/IAlarmRepository.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Larmcentralen.Domain/Interfaces/IAreaRepository.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Larmcentralen.Domain/Interfaces/IEquipmentRepository.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Larmcentralen.Domain/Interfaces/IRepository.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 8
@@ -89,7 +99,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1773879438852</updated>
-      <workItem from="1773879439767" duration="1288000" />
+      <workItem from="1773879439767" duration="1629000" />
     </task>
     <servers />
   </component>
