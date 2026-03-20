@@ -15,6 +15,11 @@ public partial class AlarmDetailPage : ContentPage
         InitializeComponent();
         _api = api;
         _alarmId = alarmId;
+    }
+    
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
         LoadAlarm();
     }
 

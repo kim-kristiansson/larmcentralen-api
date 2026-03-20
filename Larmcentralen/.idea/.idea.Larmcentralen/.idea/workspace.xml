@@ -13,10 +13,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eda7e45f-b65e-4849-981e-42d7c582da1a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Larmcentralen/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Larmcentralen/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Larmcentralen.Maui/Services/ApiClient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Maui/Services/ApiClient.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Larmcentralen.Maui/Views/SolutionDetailPage.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Maui/Views/SolutionDetailPage.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Larmcentralen.Maui/Views/SolutionDetailPage.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Maui/Views/SolutionDetailPage.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Larmcentralen.Maui/Views/AlarmDetailPage.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Maui/Views/AlarmDetailPage.xaml.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
