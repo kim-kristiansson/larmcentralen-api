@@ -1,4 +1,5 @@
-﻿using Larmcentralen.Maui.Services;
+﻿using Larmcentralen.Maui.Models;
+using Larmcentralen.Maui.Services;
 
 namespace Larmcentralen.Maui;
 
@@ -6,6 +7,7 @@ public partial class MainPage : ContentPage
 {
     private readonly ApiClient _api;
     private CancellationTokenSource? _debounce;
+    private string? _activeSeverityFilter;
 
     public MainPage(ApiClient api)
     {
@@ -14,12 +16,19 @@ public partial class MainPage : ContentPage
         LoadAlarms();
     }
 
-    private async void LoadAlarms(string? search = null)
+    private async void LoadAlarms(string? search = null, string? severity = null)
     {
         try
         {
-            var alarms = await _api.SearchAlarmsAsync(search);
+            var alarms = await _api.SearchAlarmsAsync(search, severity);
             AlarmList.ItemsSource = alarms;
+
+            ResultCount.Text = alarms.Count switch
+            {
+                0 => "",
+                1 => "1 larm",
+                _ => $"{alarms.Count} larm"
+            };
         }
         catch (Exception ex)
         {
@@ -29,11 +38,13 @@ public partial class MainPage : ContentPage
 
     private void OnSearch(object? sender, EventArgs e)
     {
-        LoadAlarms(SearchBar.Text);
+        LoadAlarms(SearchEntry.Text, _activeSeverityFilter);
     }
 
     private void OnSearchTextChanged(object? sender, TextChangedEventArgs e)
     {
+        ClearButton.IsVisible = !string.IsNullOrWhiteSpace(e.NewTextValue);
+
         _debounce?.Cancel();
         _debounce = new CancellationTokenSource();
         var token = _debounce.Token;
@@ -44,15 +55,52 @@ public partial class MainPage : ContentPage
             {
                 MainThread.BeginInvokeOnMainThread(() =>
                 {
-                    LoadAlarms(e.NewTextValue);
+                    LoadAlarms(e.NewTextValue, _activeSeverityFilter);
                 });
             }
         }, TaskScheduler.Default);
     }
 
+    private void OnClearSearch(object? sender, TappedEventArgs e)
+    {
+        SearchEntry.Text = "";
+        _activeSeverityFilter = null;
+        LoadAlarms();
+    }
+
+    private void OnFilterAll(object? sender, TappedEventArgs e)
+    {
+        _activeSeverityFilter = null;
+        LoadAlarms(SearchEntry.Text);
+    }
+
+    private void OnFilterKritisk(object? sender, TappedEventArgs e)
+    {
+        _activeSeverityFilter = "Kritisk";
+        LoadAlarms(SearchEntry.Text, "Kritisk");
+    }
+
+    private void OnFilterHög(object? sender, TappedEventArgs e)
+    {
+        _activeSeverityFilter = "Hög";
+        LoadAlarms(SearchEntry.Text, "Hög");
+    }
+
+    private void OnFilterMedel(object? sender, TappedEventArgs e)
+    {
+        _activeSeverityFilter = "Medel";
+        LoadAlarms(SearchEntry.Text, "Medel");
+    }
+
+    private void OnFilterLåg(object? sender, TappedEventArgs e)
+    {
+        _activeSeverityFilter = "Låg";
+        LoadAlarms(SearchEntry.Text, "Låg");
+    }
+
     private async void OnAlarmSelected(object? sender, SelectionChangedEventArgs e)
     {
-        if (e.CurrentSelection.FirstOrDefault() is Models.AlarmListDto alarm)
+        if (e.CurrentSelection.FirstOrDefault() is AlarmListDto alarm)
         {
             await Navigation.PushAsync(new Views.AlarmDetailPage(_api, alarm.Id));
             AlarmList.SelectedItem = null;

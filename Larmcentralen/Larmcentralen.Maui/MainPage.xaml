@@ -1,38 +1,228 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:conv="clr-namespace:Larmcentralen.Maui.Converters"
              x:Class="Larmcentralen.Maui.MainPage"
-             Title="Larmcentralen">
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{StaticResource Background}">
 
-    <Grid RowDefinitions="Auto,*" Padding="16">
+    <ContentPage.Resources>
+        <conv:SeverityToBackgroundConverter x:Key="SevBg" />
+        <conv:SeverityToTextColorConverter x:Key="SevText" />
+        <conv:SeverityToIconConverter x:Key="SevIcon" />
+    </ContentPage.Resources>
 
-        <SearchBar x:Name="SearchBar"
-                   Placeholder="Sök alarm..."
-                   SearchButtonPressed="OnSearch"
-                   TextChanged="OnSearchTextChanged"
-                   Grid.Row="0" />
+    <Grid RowDefinitions="Auto,*">
 
-        <CollectionView x:Name="AlarmList"
-                        Grid.Row="1"
-                        SelectionMode="Single"
-                        SelectionChanged="OnAlarmSelected">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Border Padding="12" Margin="0,4" Stroke="LightGray" StrokeShape="RoundRectangle 8">
-                        <Grid ColumnDefinitions="*,Auto">
-                            <VerticalStackLayout Grid.Column="0">
-                                <Label Text="{Binding Title}" FontSize="16" FontAttributes="Bold" />
-                                <Label Text="{Binding AlarmCode}" FontSize="12" TextColor="Gray" />
-                                <Label Text="{Binding EquipmentTitle}" FontSize="12" TextColor="Gray" />
-                            </VerticalStackLayout>
-                            <Label Grid.Column="1" Text="{Binding Severity}"
-                                   FontSize="12" FontAttributes="Bold"
-                                   VerticalOptions="Center" />
+        <!-- Header + Search -->
+        <VerticalStackLayout Grid.Row="0" 
+                             HorizontalOptions="Center"
+                             Spacing="0"
+                             Padding="32,48,32,24">
+
+            <!-- Identity -->
+            <Label Text="Larmcentralen" 
+                   FontSize="32" 
+                   FontAttributes="Bold" 
+                   TextColor="{StaticResource Accent}" 
+                   HorizontalOptions="Center" />
+            <Label Text="Larmkunskap för värmebehandling"
+                   FontSize="14"
+                   TextColor="{StaticResource TextSecondary}"
+                   HorizontalOptions="Center"
+                   Margin="0,4,0,0" />
+            <Label Text="Värnamo • Internt system"
+                   FontSize="12"
+                   TextColor="{StaticResource Border}"
+                   HorizontalOptions="Center"
+                   Margin="0,2,0,24" />
+
+            <!-- Search bar -->
+            <Border StrokeShape="RoundRectangle 10" 
+                    Stroke="{StaticResource Border}" 
+                    BackgroundColor="White"
+                    Padding="14,10"
+                    WidthRequest="600">
+                <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="10">
+                    <Label Text="⌕" 
+                           FontSize="18" 
+                           TextColor="{StaticResource TextSecondary}"
+                           VerticalOptions="Center"
+                           Grid.Column="0" />
+                    <Entry x:Name="SearchEntry" 
+                           Placeholder="Sök larm, utrustning, område eller kod..." 
+                           PlaceholderColor="{StaticResource TextSecondary}"
+                           TextColor="{StaticResource Primary}"
+                           FontSize="15"
+                           BackgroundColor="Transparent"
+                           HorizontalOptions="Fill"
+                           VerticalOptions="Center"
+                           TextChanged="OnSearchTextChanged"
+                           Completed="OnSearch"
+                           Grid.Column="1" />
+                    <Label x:Name="ClearButton"
+                           Text="✕"
+                           FontSize="14"
+                           TextColor="{StaticResource TextSecondary}"
+                           VerticalOptions="Center"
+                           IsVisible="False"
+                           Grid.Column="2">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnClearSearch" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+            </Border>
+
+            <!-- Filter chips -->
+            <HorizontalStackLayout Spacing="8" 
+                                   HorizontalOptions="Center" 
+                                   Margin="0,16,0,0">
+                <Border StrokeShape="RoundRectangle 16"
+                        Stroke="{StaticResource Border}"
+                        BackgroundColor="{StaticResource Surface}"
+                        Padding="14,8">
+                    <Label Text="Alla" FontSize="13" TextColor="{StaticResource Primary}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnFilterAll" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Border>
+                <Border StrokeShape="RoundRectangle 16"
+                        Stroke="#FECACA"
+                        BackgroundColor="#FEF2F2"
+                        Padding="14,8">
+                    <Label Text="⬣ Kritisk" FontSize="13" TextColor="#991B1B" FontAttributes="Bold">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnFilterKritisk" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Border>
+                <Border StrokeShape="RoundRectangle 16"
+                        Stroke="#FED7AA"
+                        BackgroundColor="#FFF7ED"
+                        Padding="14,8">
+                    <Label Text="◆ Hög" FontSize="13" TextColor="#9A3412" FontAttributes="Bold">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnFilterHög" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Border>
+                <Border StrokeShape="RoundRectangle 16"
+                        Stroke="#FEF3C7"
+                        BackgroundColor="#FFFBEB"
+                        Padding="14,8">
+                    <Label Text="▲ Medel" FontSize="13" TextColor="#92400E" FontAttributes="Bold">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnFilterMedel" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Border>
+                <Border StrokeShape="RoundRectangle 16"
+                        Stroke="#DBEAFE"
+                        BackgroundColor="#EFF6FF"
+                        Padding="14,8">
+                    <Label Text="● Låg" FontSize="13" TextColor="#1E40AF" FontAttributes="Bold">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnFilterLåg" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Border>
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+
+        <!-- Results -->
+        <VerticalStackLayout Grid.Row="1" Margin="0,0,0,0">
+            
+            <!-- Result count -->
+            <Label x:Name="ResultCount" 
+                   FontSize="13" 
+                   TextColor="{StaticResource TextSecondary}"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,8" />
+
+            <CollectionView x:Name="AlarmList"
+                            SelectionMode="Single"
+                            SelectionChanged="OnAlarmSelected">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="0" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid WidthRequest="900" HorizontalOptions="Center" Padding="16,0">
+                            <Border BackgroundColor="White"
+                                    Stroke="{StaticResource Border}"
+                                    StrokeThickness="1"
+                                    StrokeShape="RoundRectangle 10"
+                                    Padding="20,16"
+                                    Margin="0,4">
+                                <Grid ColumnDefinitions="4,*,Auto" ColumnSpacing="16">
+
+                                    <!-- Severity color bar -->
+                                    <BoxView Grid.Column="0"
+                                             WidthRequest="4"
+                                             CornerRadius="2"
+                                             Color="{Binding Severity, Converter={StaticResource SevText}}"
+                                             VerticalOptions="Fill" />
+
+                                    <!-- Content -->
+                                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="3">
+                                        <Label Text="{Binding Title}" 
+                                               FontSize="17" 
+                                               FontAttributes="Bold"
+                                               TextColor="{StaticResource Primary}" />
+                                        <HorizontalStackLayout Spacing="6">
+                                            <Label Text="{Binding AlarmCode}" 
+                                                   FontSize="13" 
+                                                   FontAttributes="Bold"
+                                                   TextColor="{StaticResource TextSecondary}" />
+                                            <Label Text="·" FontSize="13" TextColor="{StaticResource TextSecondary}" />
+                                            <Label FontSize="13" TextColor="{StaticResource TextSecondary}">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{Binding AreaTitle}" />
+                                                        <Span Text=" → " />
+                                                        <Span Text="{Binding EquipmentTitle}" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                        </HorizontalStackLayout>
+                                    </VerticalStackLayout>
+
+                                    <!-- Severity badge -->
+                                    <Border Grid.Column="2"
+                                            BackgroundColor="{Binding Severity, Converter={StaticResource SevBg}}"
+                                            StrokeThickness="0"
+                                            StrokeShape="RoundRectangle 6"
+                                            Padding="10,6"
+                                            VerticalOptions="Center">
+                                        <Label VerticalOptions="Center" FontSize="13" FontAttributes="Bold"
+                                               TextColor="{Binding Severity, Converter={StaticResource SevText}}">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding Severity, Converter={StaticResource SevIcon}}" />
+                                                    <Span Text=" " />
+                                                    <Span Text="{Binding Severity}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </Border>
+
+                                </Grid>
+                            </Border>
                         </Grid>
-                    </Border>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <CollectionView.EmptyView>
+                    <Label Text="Inga larm hittades" 
+                           FontSize="14"
+                           TextColor="{StaticResource TextSecondary}" 
+                           HorizontalOptions="Center" 
+                           Margin="0,40" />
+                </CollectionView.EmptyView>
+            </CollectionView>
+        </VerticalStackLayout>
 
     </Grid>
 

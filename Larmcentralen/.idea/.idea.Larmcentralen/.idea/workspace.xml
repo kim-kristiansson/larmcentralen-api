@@ -13,7 +13,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eda7e45f-b65e-4849-981e-42d7c582da1a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Larmcentralen.Maui/Larmcentralen.Maui.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Maui/Larmcentralen.Maui.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Larmcentralen.Maui/Converters/SeverityConverter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Larmcentralen/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Larmcentralen/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Larmcentralen.Maui/MainPage.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Maui/MainPage.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Larmcentralen.Maui/MainPage.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Maui/MainPage.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Larmcentralen.Maui/Resources/Styles/Colors.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Maui/Resources/Styles/Colors.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Larmcentralen.Maui/Resources/Styles/Styles.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Maui/Resources/Styles/Styles.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Larmcentralen.Maui/Services/ApiClient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Maui/Services/ApiClient.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Larmcentralen.Maui/Views/AlarmDetailPage.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Maui/Views/AlarmDetailPage.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Larmcentralen.Maui/Views/AlarmDetailPage.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Maui/Views/AlarmDetailPage.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Larmcentralen.Maui/Views/SolutionDetailPage.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Maui/Views/SolutionDetailPage.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Larmcentralen.Maui/Views/SolutionDetailPage.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Maui/Views/SolutionDetailPage.xaml.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +68,7 @@
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Infrastructure/Repositories/EquipmentRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Infrastructure/Repositories/Repository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Infrastructure/Repositories/SolutionRepository.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Larmcentralen.Maui/Converters/SeverityConverter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Maui/MainPage.xaml" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Maui/MainPage.xaml.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Maui/Models/AlarmDto.cs" root0="FORCE_HIGHLIGHTING" />
@@ -84,7 +95,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     ".NET Launch Settings Profile.Larmcentralen.Api: http.executor": "Run",
-    ".NET Launch Settings Profile.Larmcentralen.Maui: Windows Machine.executor": "Run",
+    ".NET Launch Settings Profile.Larmcentralen.Maui: Windows Machine.executor": "Debug",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
@@ -95,7 +106,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "consents",
+    "settings.editor.selected.configurable": "HotReloadSettingsPage",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -185,7 +196,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1773879438852</updated>
-      <workItem from="1773879439767" duration="12415000" />
+      <workItem from="1773879439767" duration="20692000" />
     </task>
     <servers />
   </component>

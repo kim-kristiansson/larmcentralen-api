@@ -6,11 +6,17 @@ namespace Larmcentralen.Maui.Services;
 public class ApiClient(HttpClient http)
 {
     // Alarms
-    public async Task<List<AlarmListDto>> SearchAlarmsAsync(string? search = null)
+    public async Task<List<AlarmListDto>> SearchAlarmsAsync(string? search = null, string? severity = null)
     {
-        var url = "api/alarms";
+        var parts = new List<string>();
         if (!string.IsNullOrWhiteSpace(search))
-            url += $"?search={Uri.EscapeDataString(search)}";
+            parts.Add($"search={Uri.EscapeDataString(search)}");
+        if (!string.IsNullOrWhiteSpace(severity))
+            parts.Add($"severity={Uri.EscapeDataString(severity)}");
+
+        var url = "api/alarms";
+        if (parts.Count > 0)
+            url += "?" + string.Join("&", parts);
 
         return await http.GetFromJsonAsync<List<AlarmListDto>>(url) ?? [];
     }
