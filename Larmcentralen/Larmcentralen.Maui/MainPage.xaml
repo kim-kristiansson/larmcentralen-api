@@ -38,41 +38,14 @@
                    Margin="0,2,0,24" />
 
             <!-- Search bar -->
-            <Border StrokeShape="RoundRectangle 10" 
-                    Stroke="{StaticResource Border}" 
-                    BackgroundColor="White"
-                    Padding="14,10"
-                    WidthRequest="600">
-                <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="10">
-                    <Label Text="⌕" 
-                           FontSize="18" 
-                           TextColor="{StaticResource TextSecondary}"
-                           VerticalOptions="Center"
-                           Grid.Column="0" />
-                    <Entry x:Name="SearchEntry" 
-                           Placeholder="Sök larm, utrustning, område eller kod..." 
-                           PlaceholderColor="{StaticResource TextSecondary}"
-                           TextColor="{StaticResource Primary}"
-                           FontSize="15"
-                           BackgroundColor="Transparent"
-                           HorizontalOptions="Fill"
-                           VerticalOptions="Center"
-                           TextChanged="OnSearchTextChanged"
-                           Completed="OnSearch"
-                           Grid.Column="1" />
-                    <Label x:Name="ClearButton"
-                           Text="✕"
-                           FontSize="14"
-                           TextColor="{StaticResource TextSecondary}"
-                           VerticalOptions="Center"
-                           IsVisible="False"
-                           Grid.Column="2">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnClearSearch" />
-                        </Label.GestureRecognizers>
-                    </Label>
-                </Grid>
-            </Border>
+            <SearchBar x:Name="SearchEntry"
+                       Placeholder="Sök larm, utrustning, område eller kod..."
+                       PlaceholderColor="{StaticResource TextSecondary}"
+                       TextColor="{StaticResource Primary}"
+                       FontSize="15"
+                       WidthRequest="600"
+                       TextChanged="OnSearchTextChanged"
+                       SearchButtonPressed="OnSearch" />
 
             <!-- Filter chips -->
             <HorizontalStackLayout Spacing="8" 

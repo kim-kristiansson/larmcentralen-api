@@ -61,14 +61,15 @@ public partial class MainPage : ContentPage
     {
         LoadAlarms(SearchEntry.Text, _activeSeverityFilter);
     }
-
+    
     private void OnSearchTextChanged(object? sender, TextChangedEventArgs e)
     {
-        ClearButton.IsVisible = !string.IsNullOrWhiteSpace(e.NewTextValue);
-
         _debounce?.Cancel();
         _debounce = new CancellationTokenSource();
         var token = _debounce.Token;
+
+        if (!string.IsNullOrWhiteSpace(e.NewTextValue))
+            _hasSearched = true;
 
         Task.Delay(300, token).ContinueWith(_ =>
         {
@@ -80,13 +81,6 @@ public partial class MainPage : ContentPage
                 });
             }
         }, TaskScheduler.Default);
-    }
-
-    private void OnClearSearch(object? sender, TappedEventArgs e)
-    {
-        SearchEntry.Text = "";
-        _activeSeverityFilter = null;
-        LoadAlarms();
     }
 
     private void OnFilterAll(object? sender, TappedEventArgs e)
