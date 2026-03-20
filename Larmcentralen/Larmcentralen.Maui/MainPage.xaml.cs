@@ -1,23 +1,44 @@
-﻿namespace Larmcentralen.Maui;
+﻿using Larmcentralen.Maui.Services;
+
+namespace Larmcentralen.Maui;
 
 public partial class MainPage : ContentPage
 {
-    int count = 0;
+    private readonly ApiClient _api;
 
-    public MainPage()
+    public MainPage(ApiClient api)
     {
         InitializeComponent();
+        _api = api;
+        LoadAlarms();
     }
 
-    private void OnCounterClicked(object? sender, EventArgs e)
+    private async void LoadAlarms(string? search = null)
     {
-        count++;
+        try
+        {
+            var alarms = await _api.SearchAlarmsAsync(search);
+            AlarmList.ItemsSource = alarms;
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Fel", $"Kunde inte hämta larm: {ex.Message}", "OK");
+        }
+    }
 
-        if (count == 1)
-            CounterBtn.Text = $"Clicked {count} time";
-        else
-            CounterBtn.Text = $"Clicked {count} times";
+    private void OnSearch(object sender, EventArgs e)
+    {
+        LoadAlarms(SearchBar.Text);
+    }
 
-        SemanticScreenReader.Announce(CounterBtn.Text);
+    private void OnSearchTextChanged(object sender, TextChangedEventArgs e)
+    {
+        if (string.IsNullOrWhiteSpace(e.NewTextValue))
+            LoadAlarms();
+    }
+
+    private async void OnAlarmSelected(object sender, SelectionChangedEventArgs e)
+    {
+        // We'll navigate to the detail page next
     }
 }
