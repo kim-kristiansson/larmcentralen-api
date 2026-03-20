@@ -8,15 +8,12 @@ public partial class AlarmEditorPage : ContentPage
     private readonly ApiClient _api;
     private List<AreaDto> _areas = [];
     private List<EquipmentDto> _equipment = [];
-    private string? _selectedSeverity;
 
     public AlarmEditorPage(ApiClient api)
     {
         InitializeComponent();
         _api = api;
-        _selectedSeverity = "Låg";
-        SeverityLabel.Text = "Låg";
-        SeverityLabel.TextColor = (Color)Application.Current!.Resources["Primary"];
+        SeverityPicker.SelectedIndex = 0;
         LoadAreas();
     }
 
@@ -58,7 +55,7 @@ public partial class AlarmEditorPage : ContentPage
             return;
         }
 
-        if (string.IsNullOrEmpty(_selectedSeverity))
+        if (SeverityPicker.SelectedIndex < 0)
         {
             await DisplayAlertAsync("Fel", "Välj allvarlighetsgrad", "OK");
             return;
@@ -84,7 +81,7 @@ public partial class AlarmEditorPage : ContentPage
             {
                 Title = TitleEntry.Text,
                 AlarmCode = string.IsNullOrWhiteSpace(AlarmCodeEntry.Text) ? null : AlarmCodeEntry.Text,
-                Severity = _selectedSeverity ?? "Låg",
+                Severity = SeverityPicker.SelectedItem?.ToString() ?? "Låg",
                 Description = string.IsNullOrWhiteSpace(DescriptionEditor.Text) ? null : DescriptionEditor.Text,
                 EquipmentId = _equipment[EquipmentPicker.SelectedIndex].Id
             };
@@ -109,17 +106,5 @@ public partial class AlarmEditorPage : ContentPage
             if (!confirm) return;
         }
         await Navigation.PopAsync();
-    }
-    
-    [Obsolete("Obsolete")]
-    private async void OnSeverityTapped(object? sender, TappedEventArgs e)
-    {
-        var result = await DisplayActionSheet("Allvarlighetsgrad", "Avbryt", null, "Låg", "Medel", "Hög", "Kritisk");
-        if (result is not null and not "Avbryt")
-        {
-            _selectedSeverity = result;
-            SeverityLabel.Text = result;
-            SeverityLabel.TextColor = (Color)Application.Current!.Resources["Primary"];
-        }
     }
 }

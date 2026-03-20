@@ -36,21 +36,6 @@ public static class MauiProgram
 #if DEBUG
 		builder.Logging.AddDebug();
 #endif
-
-#if WINDOWS
-		void StripBorder(Microsoft.UI.Xaml.Controls.Control control, string prefix)
-		{
-			control.BorderThickness = new Microsoft.UI.Xaml.Thickness(0);
-			control.Background = null;
-			control.FocusVisualMargin = new Microsoft.UI.Xaml.Thickness(0);
-			control.Resources[$"{prefix}BorderThemeThicknessFocused"] = new Microsoft.UI.Xaml.Thickness(0);
-			control.Resources[$"{prefix}BorderThemeThicknessPointerOver"] = new Microsoft.UI.Xaml.Thickness(0);
-		}
-
-		Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping("Borderless", (h, _) => StripBorder(h.PlatformView, "TextControl"));
-		Microsoft.Maui.Handlers.EditorHandler.Mapper.AppendToMapping("Borderless", (h, _) => StripBorder(h.PlatformView, "TextControl"));
-		Microsoft.Maui.Handlers.PickerHandler.Mapper.AppendToMapping("Borderless", (h, _) => StripBorder(h.PlatformView, "ComboBox"));
-#endif
 		
 		return builder.Build();
 	}

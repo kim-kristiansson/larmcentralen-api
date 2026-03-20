@@ -40,84 +40,67 @@
                 <!-- Title -->
                 <VerticalStackLayout Spacing="4">
                     <Label Text="Titel *" FontSize="13" TextColor="{StaticResource TextSecondary}" />
-                    <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" BackgroundColor="White" Padding="12,8">
-                        <Entry x:Name="TitleEntry"
-                               Placeholder="Larmets titel..."
-                               PlaceholderColor="{StaticResource TextSecondary}"
-                               TextColor="{StaticResource Primary}"
-                               FontSize="15"
-                               BackgroundColor="Transparent" />
-                    </Border>
+                    <Entry x:Name="TitleEntry"
+                           Placeholder="Larmets titel..."
+                           PlaceholderColor="{StaticResource TextSecondary}"
+                           TextColor="{StaticResource Primary}"
+                           FontSize="15" />
                 </VerticalStackLayout>
 
                 <!-- Alarm code -->
                 <VerticalStackLayout Spacing="4">
                     <Label Text="Larmkod" FontSize="13" TextColor="{StaticResource TextSecondary}" />
-                    <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" BackgroundColor="White" Padding="12,8">
-                        <Entry x:Name="AlarmCodeEntry"
-                               Placeholder="t.ex. E-401"
-                               PlaceholderColor="{StaticResource TextSecondary}"
-                               TextColor="{StaticResource Primary}"
-                               FontSize="15"
-                               BackgroundColor="Transparent" />
-                    </Border>
+                    <Entry x:Name="AlarmCodeEntry"
+                           Placeholder="t.ex. E-401"
+                           PlaceholderColor="{StaticResource TextSecondary}"
+                           TextColor="{StaticResource Primary}"
+                           FontSize="15" />
                 </VerticalStackLayout>
 
                 <!-- Severity -->
                 <VerticalStackLayout Spacing="4">
                     <Label Text="Allvarlighetsgrad *" FontSize="13" TextColor="{StaticResource TextSecondary}" />
-                    <!-- Replace the Picker Border with a tappable label -->
-                    <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" BackgroundColor="White" Padding="12,10">
-                        <Grid ColumnDefinitions="*,Auto">
-                            <Label x:Name="SeverityLabel" 
-                                   Text="Välj..."
-                                   TextColor="{StaticResource TextSecondary}"
-                                   FontSize="15"
-                                   Grid.Column="0" />
-                            <Label Text="▾" FontSize="14" TextColor="{StaticResource TextSecondary}" Grid.Column="1" />
-                            <Grid.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="OnSeverityTapped" />
-                            </Grid.GestureRecognizers>
-                        </Grid>
-                    </Border>
+                    <Picker x:Name="SeverityPicker"
+                            TextColor="{StaticResource Primary}"
+                            FontSize="15">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Låg</x:String>
+                                <x:String>Medel</x:String>
+                                <x:String>Hög</x:String>
+                                <x:String>Kritisk</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
                 </VerticalStackLayout>
 
                 <!-- Area -->
                 <VerticalStackLayout Spacing="4">
                     <Label Text="Område *" FontSize="13" TextColor="{StaticResource TextSecondary}" />
-                    <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" BackgroundColor="White" Padding="8,0">
-                        <Picker x:Name="AreaPicker"
-                                TextColor="{StaticResource Primary}"
-                                FontSize="15"
-                                BackgroundColor="Transparent"
-                                SelectedIndexChanged="OnAreaChanged" />
-                    </Border>
+                    <Picker x:Name="AreaPicker"
+                            TextColor="{StaticResource Primary}"
+                            FontSize="15"
+                            SelectedIndexChanged="OnAreaChanged" />
                 </VerticalStackLayout>
 
                 <!-- Equipment -->
                 <VerticalStackLayout Spacing="4">
                     <Label Text="Utrustning *" FontSize="13" TextColor="{StaticResource TextSecondary}" />
-                    <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" BackgroundColor="White" Padding="8,0">
-                        <Picker x:Name="EquipmentPicker"
-                                TextColor="{StaticResource Primary}"
-                                FontSize="15"
-                                BackgroundColor="Transparent" />
-                    </Border>
+                    <Picker x:Name="EquipmentPicker"
+                            TextColor="{StaticResource Primary}"
+                            FontSize="15" />
                 </VerticalStackLayout>
 
                 <!-- Description -->
                 <VerticalStackLayout Spacing="4">
                     <Label Text="Beskrivning" FontSize="13" TextColor="{StaticResource TextSecondary}" />
-                    <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" BackgroundColor="White" Padding="12,8">
-                        <Editor x:Name="DescriptionEditor"
-                                Placeholder="Beskriv larmet..."
-                                PlaceholderColor="{StaticResource TextSecondary}"
-                                TextColor="{StaticResource Primary}"
-                                FontSize="15"
-                                BackgroundColor="Transparent"
-                                AutoSize="TextChanges"
-                                MinimumHeightRequest="100" />
-                    </Border>
+                    <Editor x:Name="DescriptionEditor"
+                            Placeholder="Beskriv larmet..."
+                            PlaceholderColor="{StaticResource TextSecondary}"
+                            TextColor="{StaticResource Primary}"
+                            FontSize="15"
+                            AutoSize="TextChanges"
+                            MinimumHeightRequest="100" />
                 </VerticalStackLayout>
 
             </VerticalStackLayout>

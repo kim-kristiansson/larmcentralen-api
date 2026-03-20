@@ -42,27 +42,25 @@
               Padding="24,0,24,16"
               ColumnDefinitions="*,200"
               ColumnSpacing="16">
+            
+            <!-- Title -->
             <VerticalStackLayout Grid.Column="0" Spacing="4">
                 <Label Text="Titel" FontSize="13" TextColor="{StaticResource TextSecondary}" />
-                <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" BackgroundColor="White" Padding="12,8">
-                    <Entry x:Name="TitleEntry"
-                           Placeholder="Lösningens titel..."
-                           PlaceholderColor="{StaticResource TextSecondary}"
-                           TextColor="{StaticResource Primary}"
-                           FontSize="15"
-                           BackgroundColor="Transparent" />
-                </Border>
+                <Entry x:Name="TitleEntry"
+                       Placeholder="Lösningens titel..."
+                       PlaceholderColor="{StaticResource TextSecondary}"
+                       TextColor="{StaticResource Primary}"
+                       FontSize="15" />
             </VerticalStackLayout>
+                
+            <!-- Time -->
             <VerticalStackLayout Grid.Column="1" Spacing="4">
                 <Label Text="Uppskattad tid" FontSize="13" TextColor="{StaticResource TextSecondary}" />
-                <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" BackgroundColor="White" Padding="12,8">
-                    <Entry x:Name="TimeEntry"
-                           Placeholder="t.ex. 15-30 min"
-                           PlaceholderColor="{StaticResource TextSecondary}"
-                           TextColor="{StaticResource Primary}"
-                           FontSize="15"
-                           BackgroundColor="Transparent" />
-                </Border>
+                <Entry x:Name="TimeEntry"
+                       Placeholder="t.ex. 15-30 min"
+                       PlaceholderColor="{StaticResource TextSecondary}"
+                       TextColor="{StaticResource Primary}"
+                       FontSize="15" />
             </VerticalStackLayout>
         </Grid>
 
@@ -81,21 +79,15 @@
                        FontAttributes="Bold"
                        TextColor="{StaticResource TextSecondary}"
                        CharacterSpacing="1" />
-                <Border StrokeShape="RoundRectangle 8" 
-                        Stroke="{StaticResource Border}" 
-                        BackgroundColor="White" 
-                        Padding="16,12">
-                    <Editor x:Name="MarkdownEditor"
-                            Placeholder="Skriv markdown här..."
-                            PlaceholderColor="{StaticResource TextSecondary}"
-                            TextColor="{StaticResource Primary}"
-                            FontSize="14"
-                            FontFamily="Consolas"
-                            BackgroundColor="Transparent"
-                            AutoSize="TextChanges"
-                            MinimumHeightRequest="400"
-                            TextChanged="OnMarkdownChanged" />
-                </Border>
+                <Editor x:Name="MarkdownEditor"
+                        Placeholder="Skriv markdown här..."
+                        PlaceholderColor="{StaticResource TextSecondary}"
+                        TextColor="{StaticResource Primary}"
+                        FontSize="14"
+                        FontFamily="Consolas"
+                        AutoSize="TextChanges"
+                        MinimumHeightRequest="400"
+                        TextChanged="OnMarkdownChanged" />
             </VerticalStackLayout>
 
             <!-- Preview -->
