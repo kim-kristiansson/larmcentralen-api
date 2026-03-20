@@ -66,45 +66,46 @@
 
         <!-- Split view: Editor + Preview -->
         <Grid Grid.Row="2" 
-              WidthRequest="900" 
-              HorizontalOptions="Center" 
-              Padding="24,0"
+              HorizontalOptions="Fill"
+              Padding="48,0"
               ColumnDefinitions="*,*"
               ColumnSpacing="16">
 
             <!-- Editor -->
-            <VerticalStackLayout Grid.Column="0" Spacing="4">
+            <Grid Grid.Column="0" RowDefinitions="Auto,*" RowSpacing="4">
                 <Label Text="MARKDOWN" 
                        FontSize="11" 
                        FontAttributes="Bold"
                        TextColor="{StaticResource TextSecondary}"
-                       CharacterSpacing="1" />
-                <Editor x:Name="MarkdownEditor"
-                        Placeholder="Skriv markdown här..."
-                        PlaceholderColor="{StaticResource TextSecondary}"
-                        TextColor="{StaticResource Primary}"
-                        FontSize="14"
-                        FontFamily="Consolas"
-                        AutoSize="TextChanges"
-                        MinimumHeightRequest="400"
-                        TextChanged="OnMarkdownChanged" />
-            </VerticalStackLayout>
+                       CharacterSpacing="1"
+                       Grid.Row="0" />
+                <ScrollView Grid.Row="1" VerticalScrollBarVisibility="Default">
+                    <Editor x:Name="MarkdownEditor"
+                            Placeholder="Skriv markdown här..."
+                            PlaceholderColor="{StaticResource TextSecondary}"
+                            TextColor="{StaticResource Primary}"
+                            FontSize="14"
+                            FontFamily="Consolas"
+                            AutoSize="TextChanges"
+                            TextChanged="OnMarkdownChanged" />
+                </ScrollView>
+            </Grid>
 
             <!-- Preview -->
-            <VerticalStackLayout Grid.Column="1" Spacing="4">
+            <Grid Grid.Column="1" RowDefinitions="Auto,*" RowSpacing="0">
                 <Label Text="FÖRHANDSGRANSKNING" 
                        FontSize="11" 
                        FontAttributes="Bold"
                        TextColor="{StaticResource TextSecondary}"
-                       CharacterSpacing="1" />
-                <Border StrokeShape="RoundRectangle 8" 
-                        Stroke="{StaticResource Border}" 
-                        BackgroundColor="White" 
-                        Padding="16,16"
-                        MinimumHeightRequest="400">
-                    <md:MarkdownView x:Name="Preview" HorizontalOptions="Fill" Margin="0,4" />
-                </Border>
-            </VerticalStackLayout>
+                       CharacterSpacing="1"
+                       Margin="0,0,0,4"
+                       Grid.Row="0" />
+                <ScrollView Grid.Row="1" VerticalScrollBarVisibility="Default">
+                    <VerticalStackLayout Padding="0,12,0,0">
+                        <md:MarkdownView x:Name="Preview" HorizontalOptions="Fill" />
+                    </VerticalStackLayout>
+                </ScrollView>
+            </Grid>
 
         </Grid>
 
