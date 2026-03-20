@@ -1,12 +1,13 @@
 ﻿using Larmcentralen.Application.DTOs;
 using Larmcentralen.Application.Interfaces;
+using Larmcentralen.Application.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Larmcentralen.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class AlarmsController(IAlarmService service) : ControllerBase
+public class AlarmsController(IAlarmService service, ISolutionService solutionService) : ControllerBase
 {
     [HttpGet]
     [HttpGet]
@@ -37,4 +38,14 @@ public class AlarmsController(IAlarmService service) : ControllerBase
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> Delete(int id)
         => await service.DeleteAsync(id) ? NoContent() : NotFound();
+    
+    [HttpGet("{id}/export")]
+    public async Task<IActionResult> ExportToWord(int id, [FromServices] ExportService exportService)
+    {
+        var result = await exportService.ExportAlarmToDocxAsync(id);
+        if (result is null) return NotFound();
+
+        var (bytes, fileName) = result.Value;
+        return File(bytes, "application/vnd.openxmlformats-officedocument.wordprocessingml.document", fileName);
+    }
 }

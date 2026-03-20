@@ -1,6 +1,7 @@
 ﻿using Indiko.Maui.Controls.Markdown;
 using Indiko.Maui.Controls.Markdown.Theming;
 using Larmcentralen.Maui.Converters;
+using Larmcentralen.Maui.Models;
 using Larmcentralen.Maui.Services;
 
 namespace Larmcentralen.Maui.Views;
@@ -10,7 +11,8 @@ public partial class SolutionDetailPage : ContentPage
     private readonly ApiClient _api;
     private readonly int _solutionId;
     private readonly string _severity;
-
+    private SolutionDto? _solution;
+    
     public SolutionDetailPage(ApiClient api, int solutionId, string severity)
     {
         InitializeComponent();
@@ -77,12 +79,12 @@ public partial class SolutionDetailPage : ContentPage
     {
         try
         {
-            var solution = await _api.GetSolutionAsync(_solutionId);
-            if (solution is null) return;
+            _solution = await _api.GetSolutionAsync(_solutionId);
+            if (_solution is null) return;
 
-            TitleLabel.Text = solution.Title;
-            TimeLabel.Text = solution.EstimatedTime != null ? $"Uppskattad tid: {solution.EstimatedTime}" : "";
-            MarkdownContent.MarkdownText = solution.Content ?? "";
+            TitleLabel.Text = _solution.Title;
+            TimeLabel.Text = _solution.EstimatedTime != null ? $"Uppskattad tid: {_solution.EstimatedTime}" : "";
+            MarkdownContent.MarkdownText = _solution.Content ?? "";
         }
         catch (Exception ex)
         {
@@ -93,5 +95,17 @@ public partial class SolutionDetailPage : ContentPage
     private async void OnBackTapped(object? sender, TappedEventArgs e)
     {
         await Navigation.PopAsync();
+    }
+    
+    private async void OnEditTapped(object? sender, EventArgs e)
+    {
+        if (_solution is null) return;
+        await Navigation.PushAsync(new SolutionEditorPage(_api, _solution.AlarmId, _solution));
+    }
+    
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        LoadSolution();
     }
 }

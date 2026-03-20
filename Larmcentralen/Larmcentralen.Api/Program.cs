@@ -32,6 +32,7 @@ builder.Services.AddScoped<IAreaService, AreaService>();
 builder.Services.AddScoped<IEquipmentService, EquipmentService>();
 builder.Services.AddScoped<IAlarmService, AlarmService>();
 builder.Services.AddScoped<ISolutionService, SolutionService>();
+builder.Services.AddScoped<ExportService>();
 
 var app = builder.Build();
 

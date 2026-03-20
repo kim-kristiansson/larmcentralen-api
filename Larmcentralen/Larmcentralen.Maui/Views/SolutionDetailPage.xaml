@@ -34,11 +34,27 @@
                         <Label x:Name="SeverityLabel" FontSize="13" FontAttributes="Bold" />
                     </Border>
 
-                    <!-- Title + time -->
-                    <Label x:Name="TitleLabel" 
-                           FontSize="32" 
-                           FontAttributes="Bold" 
-                           TextColor="{StaticResource Primary}" />
+                    <!-- Title row with edit button -->
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Label x:Name="TitleLabel" 
+                               FontSize="28" 
+                               FontAttributes="Bold" 
+                               TextColor="{StaticResource Primary}"
+                               Grid.Column="0" />
+                        <Button Text="Redigera"
+                                FontSize="13"
+                                TextColor="{StaticResource Accent}"
+                                BackgroundColor="Transparent"
+                                BorderColor="{StaticResource Accent}"
+                                BorderWidth="1"
+                                CornerRadius="6"
+                                HeightRequest="36"
+                                Padding="14,0"
+                                Clicked="OnEditTapped"
+                                Grid.Column="1"
+                                VerticalOptions="Center" />
+                    </Grid>
+
                     <Label x:Name="TimeLabel" 
                            FontSize="15" 
                            TextColor="{StaticResource TextSecondary}" />
