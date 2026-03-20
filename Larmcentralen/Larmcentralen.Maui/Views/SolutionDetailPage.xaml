@@ -42,7 +42,7 @@
                     </Border>
 
                     <!-- Title row with edit button -->
-                    <Grid ColumnDefinitions="*,Auto">
+                    <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="8">
                         <Label x:Name="TitleLabel" 
                                FontSize="28" 
                                FontAttributes="Bold" 
@@ -59,6 +59,18 @@
                                 Padding="14,0"
                                 Clicked="OnEditTapped"
                                 Grid.Column="1"
+                                VerticalOptions="Center" />
+                        <Button Text="Ta bort"
+                                FontSize="13"
+                                TextColor="#991B1B"
+                                BackgroundColor="Transparent"
+                                BorderColor="#FECACA"
+                                BorderWidth="1"
+                                CornerRadius="6"
+                                HeightRequest="36"
+                                Padding="14,0"
+                                Clicked="OnDeleteTapped"
+                                Grid.Column="2"
                                 VerticalOptions="Center" />
                     </Grid>
 

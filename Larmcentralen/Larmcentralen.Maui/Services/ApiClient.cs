@@ -60,4 +60,10 @@ public class ApiClient(HttpClient http)
 
         return (bytes, fileName.Trim('"'));
     }
+    
+    public async Task DeleteSolutionAsync(int id)
+    {
+        var response = await http.DeleteAsync($"api/solutions/{id}");
+        response.EnsureSuccessStatusCode();
+    }
 }

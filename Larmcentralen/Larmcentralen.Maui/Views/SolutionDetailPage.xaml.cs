@@ -116,4 +116,27 @@ public partial class SolutionDetailPage : ContentPage
         base.OnAppearing();
         LoadSolution();
     }
+    
+    private async void OnDeleteTapped(object? sender, EventArgs e)
+    {
+        if (_solution is null) return;
+
+        var confirm = await DisplayAlertAsync(
+            "Ta bort lösning", 
+            $"Vill du ta bort \"{_solution.Title}\"? Detta kan inte ångras.", 
+            "Ta bort", 
+            "Avbryt");
+
+        if (!confirm) return;
+
+        try
+        {
+            await _api.DeleteSolutionAsync(_solution.Id);
+            await Navigation.PopAsync();
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlertAsync("Fel", $"Kunde inte ta bort: {ex.Message}", "OK");
+        }
+    }
 }
