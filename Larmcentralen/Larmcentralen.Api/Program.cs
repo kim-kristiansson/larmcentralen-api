@@ -33,6 +33,7 @@ builder.Services.AddScoped<IAreaService, AreaService>();
 builder.Services.AddScoped<IEquipmentService, EquipmentService>();
 builder.Services.AddScoped<IAlarmService, AlarmService>();
 builder.Services.AddScoped<ISolutionService, SolutionService>();
+builder.Services.AddScoped<ISharePointSyncService, SharePointSyncService>();
 builder.Services.AddScoped<ExportService>();
 
 builder.Services.Configure<SharePointOptions>(

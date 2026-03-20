@@ -6,7 +6,9 @@ namespace Larmcentralen.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class SolutionsController(ISolutionService service) : ControllerBase
+public class SolutionsController(
+    ISolutionService service,
+    ISharePointSyncService syncService) : ControllerBase
 {
     [HttpGet("by-alarm/{alarmId:int}")]
     public async Task<ActionResult<List<SolutionDto>>> GetByAlarm(int alarmId)
@@ -23,14 +25,29 @@ public class SolutionsController(ISolutionService service) : ControllerBase
     public async Task<ActionResult<SolutionDto>> Create(CreateSolutionDto dto)
     {
         var solution = await service.CreateAsync(dto);
+        await syncService.SyncAlarmAsync(dto.AlarmId);
         return CreatedAtAction(nameof(Get), new { id = solution.Id }, solution);
     }
 
     [HttpPut("{id:int}")]
     public async Task<IActionResult> Update(int id, UpdateSolutionDto dto)
-        => await service.UpdateAsync(id, dto) ? NoContent() : NotFound();
+    {
+        var existing = await service.GetByIdAsync(id);
+        if (existing is null) return NotFound();
+
+        var updated = await service.UpdateAsync(id, dto);
+        if (updated) await syncService.SyncAlarmAsync(existing.AlarmId);
+        return updated ? NoContent() : NotFound();
+    }
 
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> Delete(int id)
-        => await service.DeleteAsync(id) ? NoContent() : NotFound();
+    {
+        var existing = await service.GetByIdAsync(id);
+        if (existing is null) return NotFound();
+
+        var deleted = await service.DeleteAsync(id);
+        if (deleted) await syncService.SyncAlarmAsync(existing.AlarmId);
+        return deleted ? NoContent() : NotFound();
+    }
 }

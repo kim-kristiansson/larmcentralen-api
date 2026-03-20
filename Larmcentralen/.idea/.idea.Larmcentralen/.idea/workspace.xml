@@ -13,19 +13,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eda7e45f-b65e-4849-981e-42d7c582da1a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Larmcentralen.Api/Services/SharePointUploadService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Larmcentralen.Application/Services/SharePointOptions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Larmcentralen.Maui/Helpers/MarkdownThemeHelper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Larmcentralen/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Larmcentralen/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Larmcentralen.Api/Controllers/AlarmsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Api/Controllers/AlarmsController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Larmcentralen.Api/Larmcentralen.Api.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Api/Larmcentralen.Api.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Larmcentralen.Api/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Api/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Larmcentralen.Api/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Api/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Larmcentralen.Maui/Services/ApiClient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Maui/Services/ApiClient.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Larmcentralen.Maui/Views/AlarmDetailPage.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Maui/Views/AlarmDetailPage.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Larmcentralen.Maui/Views/AlarmDetailPage.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Maui/Views/AlarmDetailPage.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Larmcentralen.Maui/Views/SolutionDetailPage.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Maui/Views/SolutionDetailPage.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Larmcentralen.Maui/Views/SolutionEditorPage.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Maui/Views/SolutionEditorPage.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Larmcentralen.Application/Services/SharePointSyncService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,6 +48,7 @@
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Application/Services/ExportService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Application/Services/MarkdownToWordConverter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Application/Services/SharePointOptions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Larmcentralen.Application/Services/SharePointSyncService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Application/Services/SolutionService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Domain/Entities/Area.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Domain/Entities/Solution.cs" root0="FORCE_HIGHLIGHTING" />
