@@ -1,4 +1,5 @@
-﻿using Larmcentralen.Maui.Services;
+﻿using CommunityToolkit.Maui;
+using Larmcentralen.Maui.Services;
 using Microsoft.Extensions.Logging;
 
 namespace Larmcentralen.Maui;
@@ -22,6 +23,15 @@ public static class MauiProgram
 		});
 		builder.Services.AddSingleton<ApiClient>();
 		builder.Services.AddTransient<MainPage>();
+		
+		builder
+			.UseMauiApp<App>()
+			.UseMauiCommunityToolkit()
+			.ConfigureFonts(fonts =>
+			{
+				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+			});
 
 #if DEBUG
 		builder.Logging.AddDebug();

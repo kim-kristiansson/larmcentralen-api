@@ -1,4 +1,5 @@
-﻿using Larmcentralen.Maui.Converters;
+﻿using CommunityToolkit.Maui.Storage;
+using Larmcentralen.Maui.Converters;
 using Larmcentralen.Maui.Services;
 
 namespace Larmcentralen.Maui.Views;
@@ -76,12 +77,16 @@ public partial class AlarmDetailPage : ContentPage
             }
 
             var (bytes, fileName) = result.Value;
-            var filePath = Path.Combine(FileSystem.CacheDirectory, fileName);
-            await File.WriteAllBytesAsync(filePath, bytes);
-            await Launcher.OpenAsync(new OpenFileRequest
+            using var stream = new MemoryStream(bytes);
+            var saveResult = await FileSaver.Default.SaveAsync(fileName, stream, CancellationToken.None);
+
+            if (saveResult.IsSuccessful)
             {
-                File = new ReadOnlyFile(filePath)
-            });
+                await Launcher.OpenAsync(new OpenFileRequest
+                {
+                    File = new ReadOnlyFile(saveResult.FilePath)
+                });
+            }
         }
         catch (Exception ex)
         {

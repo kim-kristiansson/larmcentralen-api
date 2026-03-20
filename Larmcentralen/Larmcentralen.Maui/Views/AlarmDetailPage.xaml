@@ -87,9 +87,9 @@
                                 Clicked="OnAddSolution" />
                         <Button Text="Exportera .docx"
                                 FontSize="13"
-                                TextColor="{StaticResource TextSecondary}"
+                                TextColor="{StaticResource Primary}"
                                 BackgroundColor="Transparent"
-                                BorderColor="{StaticResource Border}"
+                                BorderColor="{StaticResource Primary}"
                                 BorderWidth="1"
                                 CornerRadius="6"
                                 HeightRequest="32"
