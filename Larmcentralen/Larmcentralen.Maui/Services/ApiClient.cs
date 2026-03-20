@@ -90,4 +90,18 @@ public class ApiClient(HttpClient http)
         response.EnsureSuccessStatusCode();
         return await response.Content.ReadFromJsonAsync<AlarmDto>();
     }
+    
+    public async Task<string?> UploadToSharePointAsync(int alarmId)
+    {
+        var response = await http.PostAsync($"api/alarms/{alarmId}/upload-sharepoint", null);
+        if (!response.IsSuccessStatusCode) return null;
+
+        var result = await response.Content.ReadFromJsonAsync<SharePointUploadResult>();
+        return result?.Url;
+    }
+
+    private class SharePointUploadResult
+    {
+        public string? Url { get; set; }
+    }
 }

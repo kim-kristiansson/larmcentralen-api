@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Larmcentralen.Api.Services;
 using Larmcentralen.Application.Interfaces;
 using Larmcentralen.Application.Services;
 using Larmcentralen.Domain.Interfaces;
@@ -33,6 +34,10 @@ builder.Services.AddScoped<IEquipmentService, EquipmentService>();
 builder.Services.AddScoped<IAlarmService, AlarmService>();
 builder.Services.AddScoped<ISolutionService, SolutionService>();
 builder.Services.AddScoped<ExportService>();
+
+builder.Services.Configure<SharePointOptions>(
+    builder.Configuration.GetSection("SharePoint"));
+builder.Services.AddScoped<SharePointUploadService>();
 
 var app = builder.Build();
 

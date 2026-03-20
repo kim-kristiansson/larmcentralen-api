@@ -127,4 +127,22 @@ public partial class AlarmDetailPage : ContentPage
             await DisplayAlertAsync("Fel", $"Kunde inte ta bort: {ex.Message}", "OK");
         }
     }
+    private async void OnUploadSharePoint(object? sender, EventArgs e)
+    {
+        try
+        {
+            var url = await _api.UploadToSharePointAsync(_alarmId);
+            if (url is null)
+            {
+                await DisplayAlertAsync("Fel", "Kunde inte ladda upp till SharePoint", "OK");
+                return;
+            }
+
+            await DisplayAlertAsync("Uppladdad", $"Filen laddades upp till SharePoint", "OK");
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlertAsync("Fel", $"Upload misslyckades: {ex.Message}", "OK");
+        }
+    }
 }

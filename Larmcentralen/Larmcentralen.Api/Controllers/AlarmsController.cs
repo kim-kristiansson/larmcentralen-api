@@ -1,4 +1,5 @@
-﻿using Larmcentralen.Application.DTOs;
+﻿using Larmcentralen.Api.Services;
+using Larmcentralen.Application.DTOs;
 using Larmcentralen.Application.Interfaces;
 using Larmcentralen.Application.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -46,5 +47,23 @@ public class AlarmsController(IAlarmService service, ISolutionService solutionSe
 
         var (bytes, fileName) = result.Value;
         return File(bytes, "application/vnd.openxmlformats-officedocument.wordprocessingml.document", fileName);
+    }
+    
+    [HttpPost("{id}/upload-sharepoint")]
+    public async Task<IActionResult> UploadToSharePoint(
+        int id,
+        [FromServices] ExportService exportService,
+        [FromServices] SharePointUploadService sharePointService)
+    {
+        var result = await exportService.ExportAlarmToDocxAsync(id);
+        if (result is null) return NotFound();
+
+        var (bytes, fileName) = result.Value;
+        var url = await sharePointService.UploadAsync(bytes, fileName, "Larmcentralen");
+
+        if (url is null)
+            return StatusCode(500, "Could not upload to SharePoint");
+
+        return Ok(new { url });
     }
 }

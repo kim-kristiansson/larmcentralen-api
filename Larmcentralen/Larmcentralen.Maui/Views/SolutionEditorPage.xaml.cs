@@ -1,4 +1,5 @@
-﻿using Larmcentralen.Maui.Models;
+﻿using Larmcentralen.Maui.Helpers;
+using Larmcentralen.Maui.Models;
 using Larmcentralen.Maui.Services;
 
 namespace Larmcentralen.Maui.Views;
@@ -9,11 +10,17 @@ public partial class SolutionEditorPage : ContentPage
     private readonly int _alarmId;
     private readonly int? _solutionId;
     private CancellationTokenSource? _previewDebounce;
+    
+    private void Init()
+    {
+        InitializeComponent();
+        Preview.Theme = MarkdownThemeHelper.Create();
+    }
 
     // Create new solution
     public SolutionEditorPage(ApiClient api, int alarmId)
     {
-        InitializeComponent();
+        Init();
         _api = api;
         _alarmId = alarmId;
         _solutionId = null;
@@ -22,7 +29,7 @@ public partial class SolutionEditorPage : ContentPage
     // Edit existing solution
     public SolutionEditorPage(ApiClient api, int alarmId, SolutionDto existing)
     {
-        InitializeComponent();
+        Init();
         _api = api;
         _alarmId = alarmId;
         _solutionId = existing.Id;

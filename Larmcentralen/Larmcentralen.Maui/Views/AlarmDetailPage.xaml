@@ -116,6 +116,14 @@
                                 HeightRequest="32"
                                 Padding="12,0"
                                 Clicked="OnExport" />
+                        <Button Text="Ladda upp SharePoint"
+                                FontSize="13"
+                                TextColor="White"
+                                BackgroundColor="{StaticResource Accent}"
+                                CornerRadius="6"
+                                HeightRequest="32"
+                                Padding="12,0"
+                                Clicked="OnUploadSharePoint" />
                     </HorizontalStackLayout>
 
                     <CollectionView x:Name="SolutionsList"
