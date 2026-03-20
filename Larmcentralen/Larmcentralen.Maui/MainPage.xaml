@@ -222,11 +222,18 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
                 <CollectionView.EmptyView>
-                    <Label Text="Inga larm hittades" 
-                           FontSize="14"
-                           TextColor="{StaticResource TextSecondary}" 
-                           HorizontalOptions="Center" 
-                           Margin="0,40" />
+                    <VerticalStackLayout HorizontalOptions="Center" Margin="0,40" Spacing="6">
+                        <Label x:Name="EmptyTitle"
+                               Text="Sök efter larmkod, utrustning eller beskrivning"
+                               FontSize="14"
+                               TextColor="{StaticResource TextSecondary}"
+                               HorizontalOptions="Center" />
+                        <Label x:Name="EmptySubtitle"
+                               Text="Använd filtren ovan för att hitta rätt larm"
+                               FontSize="13"
+                               TextColor="{StaticResource Border}"
+                               HorizontalOptions="Center" />
+                    </VerticalStackLayout>
                 </CollectionView.EmptyView>
             </CollectionView>
         </VerticalStackLayout>

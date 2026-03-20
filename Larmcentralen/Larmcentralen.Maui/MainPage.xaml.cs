@@ -8,12 +8,12 @@ public partial class MainPage : ContentPage
     private readonly ApiClient _api;
     private CancellationTokenSource? _debounce;
     private string? _activeSeverityFilter;
+    private bool _hasSearched;
 
     public MainPage(ApiClient api)
     {
         InitializeComponent();
         _api = api;
-        LoadAlarms();
     }
 
     private async void LoadAlarms(string? search = null, string? severity = null)
@@ -25,6 +25,18 @@ public partial class MainPage : ContentPage
             ResultCount.Text = "";
 
             var alarms = await _api.SearchAlarmsAsync(search, severity);
+            
+            if (_hasSearched && alarms.Count == 0)
+            {
+                EmptyTitle.Text = "Inga larm matchade din sökning";
+                EmptySubtitle.IsVisible = false;
+            }
+            else
+            {
+                EmptyTitle.Text = "Sök efter larmkod, utrustning eller beskrivning";
+                EmptySubtitle.IsVisible = true;
+            }
+            
             AlarmList.ItemsSource = alarms;
 
             ResultCount.Text = alarms.Count switch
