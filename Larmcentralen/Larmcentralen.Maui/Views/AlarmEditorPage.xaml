@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Larmcentralen.Maui.Views.AlarmEditorPage"
+             BackgroundColor="{StaticResource Background}"
+             Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions="Auto,*,Auto">
+
+        <!-- Header -->
+        <Grid Grid.Row="0" Padding="24,16" ColumnDefinitions="Auto,*,Auto">
+            <Label Text="← Avbryt" 
+                   TextColor="{StaticResource TextSecondary}" 
+                   FontSize="15"
+                   VerticalOptions="Center"
+                   Grid.Column="0">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnCancelTapped" />
+                </Label.GestureRecognizers>
+            </Label>
+            <Label Text="Nytt larm" 
+                   FontSize="18" 
+                   FontAttributes="Bold"
+                   TextColor="{StaticResource Primary}"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   Grid.Column="1" />
+            <Button Text="Spara"
+                    Style="{StaticResource PrimaryButton}"
+                    WidthRequest="100"
+                    HeightRequest="40"
+                    FontSize="14"
+                    Clicked="OnSaveTapped"
+                    Grid.Column="2" />
+        </Grid>
+
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout WidthRequest="600" HorizontalOptions="Center" Padding="24,8,24,48" Spacing="20">
+
+                <!-- Title -->
+                <VerticalStackLayout Spacing="4">
+                    <Label Text="Titel *" FontSize="13" TextColor="{StaticResource TextSecondary}" />
+                    <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" BackgroundColor="White" Padding="12,8">
+                        <Entry x:Name="TitleEntry"
+                               Placeholder="Larmets titel..."
+                               PlaceholderColor="{StaticResource TextSecondary}"
+                               TextColor="{StaticResource Primary}"
+                               FontSize="15"
+                               BackgroundColor="Transparent" />
+                    </Border>
+                </VerticalStackLayout>
+
+                <!-- Alarm code -->
+                <VerticalStackLayout Spacing="4">
+                    <Label Text="Larmkod" FontSize="13" TextColor="{StaticResource TextSecondary}" />
+                    <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" BackgroundColor="White" Padding="12,8">
+                        <Entry x:Name="AlarmCodeEntry"
+                               Placeholder="t.ex. E-401"
+                               PlaceholderColor="{StaticResource TextSecondary}"
+                               TextColor="{StaticResource Primary}"
+                               FontSize="15"
+                               BackgroundColor="Transparent" />
+                    </Border>
+                </VerticalStackLayout>
+
+                <!-- Severity -->
+                <VerticalStackLayout Spacing="4">
+                    <Label Text="Allvarlighetsgrad *" FontSize="13" TextColor="{StaticResource TextSecondary}" />
+                    <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" BackgroundColor="White" Padding="4,0">
+                        <Picker x:Name="SeverityPicker"
+                                TextColor="{StaticResource Primary}"
+                                FontSize="15">
+                            <Picker.ItemsSource>
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>Låg</x:String>
+                                    <x:String>Medel</x:String>
+                                    <x:String>Hög</x:String>
+                                    <x:String>Kritisk</x:String>
+                                </x:Array>
+                            </Picker.ItemsSource>
+                        </Picker>
+                    </Border>
+                </VerticalStackLayout>
+
+                <!-- Area -->
+                <VerticalStackLayout Spacing="4">
+                    <Label Text="Område *" FontSize="13" TextColor="{StaticResource TextSecondary}" />
+                    <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" BackgroundColor="White" Padding="4,0">
+                        <Picker x:Name="AreaPicker"
+                                TextColor="{StaticResource Primary}"
+                                FontSize="15"
+                                SelectedIndexChanged="OnAreaChanged" />
+                    </Border>
+                </VerticalStackLayout>
+
+                <!-- Equipment -->
+                <VerticalStackLayout Spacing="4">
+                    <Label Text="Utrustning *" FontSize="13" TextColor="{StaticResource TextSecondary}" />
+                    <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" BackgroundColor="White" Padding="4,0">
+                        <Picker x:Name="EquipmentPicker"
+                                TextColor="{StaticResource Primary}"
+                                FontSize="15" />
+                    </Border>
+                </VerticalStackLayout>
+
+                <!-- Description -->
+                <VerticalStackLayout Spacing="4">
+                    <Label Text="Beskrivning" FontSize="13" TextColor="{StaticResource TextSecondary}" />
+                    <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" BackgroundColor="White" Padding="12,8">
+                        <Editor x:Name="DescriptionEditor"
+                                Placeholder="Beskriv larmet..."
+                                PlaceholderColor="{StaticResource TextSecondary}"
+                                TextColor="{StaticResource Primary}"
+                                FontSize="15"
+                                BackgroundColor="Transparent"
+                                AutoSize="TextChanges"
+                                MinimumHeightRequest="100" />
+                    </Border>
+                </VerticalStackLayout>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Status -->
+        <Label x:Name="StatusLabel"
+               Grid.Row="2"
+               FontSize="12"
+               TextColor="{StaticResource TextSecondary}"
+               HorizontalOptions="Center"
+               Margin="0,8,0,16" />
+
+    </Grid>
+
+</ContentPage>

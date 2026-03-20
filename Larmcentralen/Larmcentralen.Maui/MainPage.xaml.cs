@@ -127,4 +127,9 @@ public partial class MainPage : ContentPage
             AlarmList.SelectedItem = null;
         }
     }
+    
+    private async void OnAddAlarm(object? sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new Views.AlarmEditorPage(_api));
+    }
 }

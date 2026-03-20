@@ -72,4 +72,22 @@ public class ApiClient(HttpClient http)
         var response = await http.DeleteAsync($"api/alarms/{id}");
         response.EnsureSuccessStatusCode();
     }
+    
+    public async Task<List<AreaDto>> GetAreasAsync()
+    {
+        return await http.GetFromJsonAsync<List<AreaDto>>("api/areas") ?? [];
+    }
+
+    public async Task<List<EquipmentDto>> GetEquipmentAsync(int? areaId = null)
+    {
+        var url = areaId.HasValue ? $"api/equipment?areaId={areaId}" : "api/equipment";
+        return await http.GetFromJsonAsync<List<EquipmentDto>>(url) ?? [];
+    }
+
+    public async Task<AlarmDto?> CreateAlarmAsync(CreateAlarmDto dto)
+    {
+        var response = await http.PostAsJsonAsync("api/alarms", dto);
+        response.EnsureSuccessStatusCode();
+        return await response.Content.ReadFromJsonAsync<AlarmDto>();
+    }
 }
