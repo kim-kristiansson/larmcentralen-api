@@ -66,29 +66,30 @@
                 <!-- Severity -->
                 <VerticalStackLayout Spacing="4">
                     <Label Text="Allvarlighetsgrad *" FontSize="13" TextColor="{StaticResource TextSecondary}" />
-                    <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" BackgroundColor="White" Padding="4,0">
-                        <Picker x:Name="SeverityPicker"
-                                TextColor="{StaticResource Primary}"
-                                FontSize="15">
-                            <Picker.ItemsSource>
-                                <x:Array Type="{x:Type x:String}">
-                                    <x:String>Låg</x:String>
-                                    <x:String>Medel</x:String>
-                                    <x:String>Hög</x:String>
-                                    <x:String>Kritisk</x:String>
-                                </x:Array>
-                            </Picker.ItemsSource>
-                        </Picker>
+                    <!-- Replace the Picker Border with a tappable label -->
+                    <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" BackgroundColor="White" Padding="12,10">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <Label x:Name="SeverityLabel" 
+                                   Text="Välj..."
+                                   TextColor="{StaticResource TextSecondary}"
+                                   FontSize="15"
+                                   Grid.Column="0" />
+                            <Label Text="▾" FontSize="14" TextColor="{StaticResource TextSecondary}" Grid.Column="1" />
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnSeverityTapped" />
+                            </Grid.GestureRecognizers>
+                        </Grid>
                     </Border>
                 </VerticalStackLayout>
 
                 <!-- Area -->
                 <VerticalStackLayout Spacing="4">
                     <Label Text="Område *" FontSize="13" TextColor="{StaticResource TextSecondary}" />
-                    <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" BackgroundColor="White" Padding="4,0">
+                    <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" BackgroundColor="White" Padding="8,0">
                         <Picker x:Name="AreaPicker"
                                 TextColor="{StaticResource Primary}"
                                 FontSize="15"
+                                BackgroundColor="Transparent"
                                 SelectedIndexChanged="OnAreaChanged" />
                     </Border>
                 </VerticalStackLayout>
@@ -96,10 +97,11 @@
                 <!-- Equipment -->
                 <VerticalStackLayout Spacing="4">
                     <Label Text="Utrustning *" FontSize="13" TextColor="{StaticResource TextSecondary}" />
-                    <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" BackgroundColor="White" Padding="4,0">
+                    <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" BackgroundColor="White" Padding="8,0">
                         <Picker x:Name="EquipmentPicker"
                                 TextColor="{StaticResource Primary}"
-                                FontSize="15" />
+                                FontSize="15"
+                                BackgroundColor="Transparent" />
                     </Border>
                 </VerticalStackLayout>
 

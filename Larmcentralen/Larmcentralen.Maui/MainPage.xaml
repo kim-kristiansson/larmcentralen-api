@@ -128,19 +128,18 @@
                         </Label.GestureRecognizers>
                     </Label>
                 </Border>
-                
-                <Button Text="+ Nytt larm"
-                        FontSize="13"
-                        TextColor="White"
-                        BackgroundColor="{StaticResource Accent}"
-                        CornerRadius="8"
-                        HeightRequest="36"
-                        Padding="16,0"
-                        HorizontalOptions="Center"
-                        Margin="0,16,0,0"
-                        Clicked="OnAddAlarm" />
             </HorizontalStackLayout>
-
+            
+            <Button Text="+ Nytt larm"
+                    FontSize="13"
+                    TextColor="White"
+                    BackgroundColor="{StaticResource Accent}"
+                    CornerRadius="8"
+                    HeightRequest="36"
+                    Padding="16,0"
+                    HorizontalOptions="Center"
+                    Margin="0,16,0,0"
+                    Clicked="OnAddAlarm" />
         </VerticalStackLayout>
 
         <!-- Results -->
