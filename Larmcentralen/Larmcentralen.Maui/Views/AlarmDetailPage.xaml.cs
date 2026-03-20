@@ -106,4 +106,25 @@ public partial class AlarmDetailPage : ContentPage
             await DisplayAlertAsync("Fel", $"Export misslyckades: {ex.Message}", "OK");
         }
     }
+    
+    private async void OnDeleteAlarm(object? sender, EventArgs e)
+    {
+        var confirm = await DisplayAlertAsync(
+            "Ta bort larm",
+            "Vill du ta bort detta larm och alla dess lösningar? Detta kan inte ångras.",
+            "Ta bort",
+            "Avbryt");
+
+        if (!confirm) return;
+
+        try
+        {
+            await _api.DeleteAlarmAsync(_alarmId);
+            await Navigation.PopAsync();
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlertAsync("Fel", $"Kunde inte ta bort: {ex.Message}", "OK");
+        }
+    }
 }

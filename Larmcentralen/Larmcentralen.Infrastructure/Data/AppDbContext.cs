@@ -51,7 +51,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
             e.HasOne(s => s.Alarm)
                 .WithMany(a => a.Solutions)
                 .HasForeignKey(s => s.AlarmId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
         });
     }
 }

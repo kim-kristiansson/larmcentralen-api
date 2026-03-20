@@ -66,4 +66,10 @@ public class ApiClient(HttpClient http)
         var response = await http.DeleteAsync($"api/solutions/{id}");
         response.EnsureSuccessStatusCode();
     }
+    
+    public async Task DeleteAlarmAsync(int id)
+    {
+        var response = await http.DeleteAsync($"api/alarms/{id}");
+        response.EnsureSuccessStatusCode();
+    }
 }

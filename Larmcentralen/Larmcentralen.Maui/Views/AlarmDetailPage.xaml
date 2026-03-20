@@ -37,20 +37,34 @@
                                        Margin="0,24,0,0" />
                     
                     <!-- Title row with severity inline -->
-                    <HorizontalStackLayout Spacing="14" Margin="0,0,0,6">
+                    <Grid ColumnDefinitions="Auto,Auto,*,Auto" ColumnSpacing="14" Margin="0,0,0,6">
                         <Label x:Name="TitleLabel" 
                                FontSize="28" 
                                FontAttributes="Bold" 
                                TextColor="{StaticResource Primary}"
-                               VerticalOptions="Center" />
+                               VerticalOptions="Center"
+                               Grid.Column="0" />
                         <Border x:Name="SeverityBadge"
                                 StrokeThickness="0"
                                 StrokeShape="RoundRectangle 6"
                                 Padding="10,6"
-                                VerticalOptions="Center">
+                                VerticalOptions="Center"
+                                Grid.Column="1">
                             <Label x:Name="SeverityLabel" FontSize="13" FontAttributes="Bold" />
                         </Border>
-                    </HorizontalStackLayout>
+                        <Button Text="Ta bort larm"
+                                FontSize="13"
+                                TextColor="#991B1B"
+                                BackgroundColor="Transparent"
+                                BorderColor="#FECACA"
+                                BorderWidth="1"
+                                CornerRadius="6"
+                                HeightRequest="32"
+                                Padding="12,0"
+                                Clicked="OnDeleteAlarm"
+                                Grid.Column="3"
+                                VerticalOptions="Center" />
+                    </Grid>
 
                     <!-- Metadata tight under title -->
                     <HorizontalStackLayout Spacing="6" Margin="0,0,0,12">
