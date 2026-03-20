@@ -52,6 +52,10 @@ public partial class MainPage : ContentPage
 
     private async void OnAlarmSelected(object? sender, SelectionChangedEventArgs e)
     {
-        // Next step — navigate to detail
+        if (e.CurrentSelection.FirstOrDefault() is Models.AlarmListDto alarm)
+        {
+            await Navigation.PushAsync(new Views.AlarmDetailPage(_api, alarm.Id));
+            AlarmList.SelectedItem = null;
+        }
     }
 }
