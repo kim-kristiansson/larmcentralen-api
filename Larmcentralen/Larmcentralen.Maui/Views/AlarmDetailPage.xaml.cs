@@ -22,18 +22,20 @@ public partial class AlarmDetailPage : ContentPage
     {
         try
         {
+            LoadingIndicator.IsVisible = true;
+            LoadingIndicator.IsRunning = true;
+
             var alarm = await _api.GetAlarmAsync(_alarmId);
             if (alarm is null) return;
 
             _severity = alarm.Severity;
-            
+        
             TitleLabel.Text = alarm.Title;
             AlarmCodeLabel.Text = alarm.AlarmCode ?? "";
             EquipmentLabel.Text = $"{alarm.AreaTitle} → {alarm.EquipmentTitle}";
             DescriptionLabel.Text = alarm.Description ?? "";
             SolutionsList.ItemsSource = alarm.Solutions;
 
-            // Severity badge
             var sevBg = new SeverityToBackgroundConverter();
             var sevText = new SeverityToTextColorConverter();
             var sevIcon = new SeverityToIconConverter();
@@ -45,7 +47,13 @@ public partial class AlarmDetailPage : ContentPage
         {
             await DisplayAlertAsync("Fel", $"Kunde inte hämta alarm: {ex.Message}", "OK");
         }
+        finally
+        {
+            LoadingIndicator.IsRunning = false;
+            LoadingIndicator.IsVisible = false;
+        }
     }
+    
     private async void OnSolutionSelected(object? sender, SelectionChangedEventArgs e)
     {
         if (e.CurrentSelection.FirstOrDefault() is Models.SolutionDto solution)

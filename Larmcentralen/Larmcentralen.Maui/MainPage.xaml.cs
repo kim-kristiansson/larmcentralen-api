@@ -20,6 +20,10 @@ public partial class MainPage : ContentPage
     {
         try
         {
+            LoadingIndicator.IsVisible = true;
+            LoadingIndicator.IsRunning = true;
+            ResultCount.Text = "";
+
             var alarms = await _api.SearchAlarmsAsync(search, severity);
             AlarmList.ItemsSource = alarms;
 
@@ -33,6 +37,11 @@ public partial class MainPage : ContentPage
         catch (Exception ex)
         {
             await DisplayAlertAsync("Fel", $"Kunde inte hämta larm: {ex.Message}", "OK");
+        }
+        finally
+        {
+            LoadingIndicator.IsRunning = false;
+            LoadingIndicator.IsVisible = false;
         }
     }
 

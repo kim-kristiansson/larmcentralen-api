@@ -142,6 +142,13 @@
                    HorizontalOptions="Center"
                    Margin="0,0,0,8" />
 
+            <ActivityIndicator x:Name="LoadingIndicator"
+                               IsRunning="False"
+                               IsVisible="False"
+                               Color="{StaticResource Accent}"
+                               HorizontalOptions="Center"
+                               Margin="0,24,0,0" />
+            
             <CollectionView x:Name="AlarmList"
                             SelectionMode="Single"
                             SelectionChanged="OnAlarmSelected">

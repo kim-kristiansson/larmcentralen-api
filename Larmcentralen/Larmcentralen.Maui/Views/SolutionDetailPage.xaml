@@ -23,6 +23,13 @@
         <ScrollView Grid.Row="1">
             <Grid HorizontalOptions="Fill">
                 <VerticalStackLayout WidthRequest="900" HorizontalOptions="Center" Padding="32,8,32,48" Spacing="6">
+                    
+                    <ActivityIndicator x:Name="LoadingIndicator"
+                                       IsRunning="False"
+                                       IsVisible="False"
+                                       Color="{StaticResource Accent}"
+                                       HorizontalOptions="Center"
+                                       Margin="0,24,0,0" />
 
                     <!-- Severity badge -->
                     <Border x:Name="SeverityBadge"

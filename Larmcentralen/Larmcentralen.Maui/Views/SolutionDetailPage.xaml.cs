@@ -79,6 +79,9 @@ public partial class SolutionDetailPage : ContentPage
     {
         try
         {
+            LoadingIndicator.IsVisible = true;
+            LoadingIndicator.IsRunning = true;
+
             _solution = await _api.GetSolutionAsync(_solutionId);
             if (_solution is null) return;
 
@@ -89,6 +92,11 @@ public partial class SolutionDetailPage : ContentPage
         catch (Exception ex)
         {
             await DisplayAlertAsync("Fel", $"Kunde inte hämta lösning: {ex.Message}", "OK");
+        }
+        finally
+        {
+            LoadingIndicator.IsRunning = false;
+            LoadingIndicator.IsVisible = false;
         }
     }
 
