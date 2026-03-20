@@ -9,6 +9,7 @@ namespace Larmcentralen.Api.Controllers;
 public class AlarmsController(IAlarmService service) : ControllerBase
 {
     [HttpGet]
+    [HttpGet]
     public async Task<ActionResult<List<AlarmListDto>>> GetAll(
         [FromQuery] string? search,
         [FromQuery] int? equipmentId,

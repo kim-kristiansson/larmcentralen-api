@@ -5,6 +5,7 @@ namespace Larmcentralen.Maui;
 public partial class MainPage : ContentPage
 {
     private readonly ApiClient _api;
+    private CancellationTokenSource? _debounce;
 
     public MainPage(ApiClient api)
     {
@@ -22,23 +23,35 @@ public partial class MainPage : ContentPage
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Fel", $"Kunde inte hämta larm: {ex.Message}", "OK");
+            await DisplayAlertAsync("Fel", $"Kunde inte hämta larm: {ex.Message}", "OK");
         }
     }
 
-    private void OnSearch(object sender, EventArgs e)
+    private void OnSearch(object? sender, EventArgs e)
     {
         LoadAlarms(SearchBar.Text);
     }
 
-    private void OnSearchTextChanged(object sender, TextChangedEventArgs e)
+    private void OnSearchTextChanged(object? sender, TextChangedEventArgs e)
     {
-        if (string.IsNullOrWhiteSpace(e.NewTextValue))
-            LoadAlarms();
+        _debounce?.Cancel();
+        _debounce = new CancellationTokenSource();
+        var token = _debounce.Token;
+
+        Task.Delay(300, token).ContinueWith(_ =>
+        {
+            if (!token.IsCancellationRequested)
+            {
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    LoadAlarms(e.NewTextValue);
+                });
+            }
+        }, TaskScheduler.Default);
     }
 
-    private async void OnAlarmSelected(object sender, SelectionChangedEventArgs e)
+    private async void OnAlarmSelected(object? sender, SelectionChangedEventArgs e)
     {
-        // We'll navigate to the detail page next
+        // Next step — navigate to detail
     }
 }

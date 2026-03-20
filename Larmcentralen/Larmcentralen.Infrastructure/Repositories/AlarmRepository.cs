@@ -18,10 +18,16 @@ public class AlarmRepository(AppDbContext db) : Repository<Alarm>(db), IAlarmRep
             query = query.Where(a => a.EquipmentId == equipmentId.Value);
 
         if (!string.IsNullOrWhiteSpace(search))
+        {
+            var pattern = $"%{search}%";
             query = query.Where(a =>
-                a.Title.Contains(search) ||
-                (a.AlarmCode != null && a.AlarmCode.Contains(search)));
-
+                EF.Functions.ILike(a.Title, pattern) ||
+                (a.AlarmCode != null && EF.Functions.ILike(a.AlarmCode, pattern)) ||
+                (a.Description != null && EF.Functions.ILike(a.Description, pattern)) ||
+                EF.Functions.ILike(a.Equipment.Title, pattern) ||
+                EF.Functions.ILike(a.Equipment.Area.Title, pattern));
+        }
+        
         if (!string.IsNullOrWhiteSpace(severity))
             query = query.Where(a => a.Severity == severity);
 

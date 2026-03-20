@@ -13,12 +13,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eda7e45f-b65e-4849-981e-42d7c582da1a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Larmcentralen.Maui/Services/ApiClient.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Larmcentralen/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Larmcentralen/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Larmcentralen.Maui/Larmcentralen.Maui.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Maui/Larmcentralen.Maui.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Larmcentralen.Maui/MainPage.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Maui/MainPage.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Larmcentralen.Api/Controllers/AlarmsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Api/Controllers/AlarmsController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Larmcentralen.Infrastructure/Repositories/AlarmRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Infrastructure/Repositories/AlarmRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Larmcentralen.Maui/MainPage.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Maui/MainPage.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Larmcentralen.Maui/MauiProgram.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Maui/MauiProgram.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,7 +179,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1773879438852</updated>
-      <workItem from="1773879439767" duration="8540000" />
+      <workItem from="1773879439767" duration="9532000" />
     </task>
     <servers />
   </component>
