@@ -14,6 +14,17 @@
 
     <Grid RowDefinitions="Auto,*">
 
+        <Grid Grid.Row="0" Padding="24,16" ColumnDefinitions="Auto,*">
+            <Label Text="← Tillbaka" 
+                   TextColor="{StaticResource Accent}" 
+                   FontSize="15"
+                   VerticalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnBackTapped" />
+                </Label.GestureRecognizers>
+            </Label>
+        </Grid>
+        
         <ScrollView Grid.Row="1">
             <Grid HorizontalOptions="Fill">
                 <VerticalStackLayout WidthRequest="900" HorizontalOptions="Center" Padding="32,160,32,48" Spacing="0">

@@ -58,4 +58,9 @@ public partial class AlarmDetailPage : ContentPage
     {
         await Navigation.PushAsync(new SolutionEditorPage(_api, _alarmId));
     }
+    
+    private async void OnBackTapped(object? sender, TappedEventArgs e)
+    {
+        await Navigation.PopAsync();
+    }
 }
