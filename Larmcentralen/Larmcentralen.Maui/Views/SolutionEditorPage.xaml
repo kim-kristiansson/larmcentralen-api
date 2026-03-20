@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:md="clr-namespace:Indiko.Maui.Controls.Markdown;assembly=Indiko.Maui.Controls.Markdown"
+             x:Class="Larmcentralen.Maui.Views.SolutionEditorPage"
+             BackgroundColor="{StaticResource Background}"
+             Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions="Auto,Auto,*,Auto">
+
+        <!-- Header -->
+        <Grid Grid.Row="0" Padding="24,16" ColumnDefinitions="Auto,*,Auto">
+            <Label Text="← Avbryt" 
+                   TextColor="{StaticResource TextSecondary}" 
+                   FontSize="15"
+                   VerticalOptions="Center"
+                   Grid.Column="0">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnCancelTapped" />
+                </Label.GestureRecognizers>
+            </Label>
+            <Label Text="Redigera lösning" 
+                   FontSize="18" 
+                   FontAttributes="Bold"
+                   TextColor="{StaticResource Primary}"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   Grid.Column="1" />
+            <Button Text="Spara"
+                    Style="{StaticResource PrimaryButton}"
+                    WidthRequest="100"
+                    HeightRequest="40"
+                    FontSize="14"
+                    Clicked="OnSaveTapped"
+                    Grid.Column="2" />
+        </Grid>
+
+        <!-- Meta fields -->
+        <Grid Grid.Row="1" 
+              WidthRequest="900" 
+              HorizontalOptions="Center" 
+              Padding="24,0,24,16"
+              ColumnDefinitions="*,200"
+              ColumnSpacing="16">
+            <VerticalStackLayout Grid.Column="0" Spacing="4">
+                <Label Text="Titel" FontSize="13" TextColor="{StaticResource TextSecondary}" />
+                <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" BackgroundColor="White" Padding="12,8">
+                    <Entry x:Name="TitleEntry"
+                           Placeholder="Lösningens titel..."
+                           PlaceholderColor="{StaticResource TextSecondary}"
+                           TextColor="{StaticResource Primary}"
+                           FontSize="15"
+                           BackgroundColor="Transparent" />
+                </Border>
+            </VerticalStackLayout>
+            <VerticalStackLayout Grid.Column="1" Spacing="4">
+                <Label Text="Uppskattad tid" FontSize="13" TextColor="{StaticResource TextSecondary}" />
+                <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" BackgroundColor="White" Padding="12,8">
+                    <Entry x:Name="TimeEntry"
+                           Placeholder="t.ex. 15-30 min"
+                           PlaceholderColor="{StaticResource TextSecondary}"
+                           TextColor="{StaticResource Primary}"
+                           FontSize="15"
+                           BackgroundColor="Transparent" />
+                </Border>
+            </VerticalStackLayout>
+        </Grid>
+
+        <!-- Split view: Editor + Preview -->
+        <Grid Grid.Row="2" 
+              WidthRequest="900" 
+              HorizontalOptions="Center" 
+              Padding="24,0"
+              ColumnDefinitions="*,*"
+              ColumnSpacing="16">
+
+            <!-- Editor -->
+            <VerticalStackLayout Grid.Column="0" Spacing="4">
+                <Label Text="MARKDOWN" 
+                       FontSize="11" 
+                       FontAttributes="Bold"
+                       TextColor="{StaticResource TextSecondary}"
+                       CharacterSpacing="1" />
+                <Border StrokeShape="RoundRectangle 8" 
+                        Stroke="{StaticResource Border}" 
+                        BackgroundColor="White" 
+                        Padding="16,12">
+                    <Editor x:Name="MarkdownEditor"
+                            Placeholder="Skriv markdown här..."
+                            PlaceholderColor="{StaticResource TextSecondary}"
+                            TextColor="{StaticResource Primary}"
+                            FontSize="14"
+                            FontFamily="Consolas"
+                            BackgroundColor="Transparent"
+                            AutoSize="TextChanges"
+                            MinimumHeightRequest="400"
+                            TextChanged="OnMarkdownChanged" />
+                </Border>
+            </VerticalStackLayout>
+
+            <!-- Preview -->
+            <VerticalStackLayout Grid.Column="1" Spacing="4">
+                <Label Text="FÖRHANDSGRANSKNING" 
+                       FontSize="11" 
+                       FontAttributes="Bold"
+                       TextColor="{StaticResource TextSecondary}"
+                       CharacterSpacing="1" />
+                <Border StrokeShape="RoundRectangle 8" 
+                        Stroke="{StaticResource Border}" 
+                        BackgroundColor="White" 
+                        Padding="16,12"
+                        MinimumHeightRequest="400">
+                    <ScrollView>
+                        <md:MarkdownView x:Name="Preview" HorizontalOptions="Fill" />
+                    </ScrollView>
+                </Border>
+            </VerticalStackLayout>
+
+        </Grid>
+
+        <!-- Status bar -->
+        <Label x:Name="StatusLabel"
+               Grid.Row="3"
+               FontSize="12"
+               TextColor="{StaticResource TextSecondary}"
+               HorizontalOptions="Center"
+               Margin="0,8,0,16" />
+
+    </Grid>
+
+</ContentPage>

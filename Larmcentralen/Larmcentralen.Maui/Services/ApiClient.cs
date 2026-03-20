@@ -31,4 +31,19 @@ public class ApiClient(HttpClient http)
     {
         return await http.GetFromJsonAsync<SolutionDto>($"api/solutions/{id}");
     }
+    
+    // Create solution
+    public async Task<SolutionDto?> CreateSolutionAsync(CreateSolutionDto dto)
+    {
+        var response = await http.PostAsJsonAsync("api/solutions", dto);
+        response.EnsureSuccessStatusCode();
+        return await response.Content.ReadFromJsonAsync<SolutionDto>();
+    }
+
+    // Update solution
+    public async Task UpdateSolutionAsync(int id, UpdateSolutionDto dto)
+    {
+        var response = await http.PutAsJsonAsync($"api/solutions/{id}", dto);
+        response.EnsureSuccessStatusCode();
+    }
 }

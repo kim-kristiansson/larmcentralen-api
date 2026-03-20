@@ -56,13 +56,25 @@
                              Color="{StaticResource Border}" 
                              Margin="0,32,0,24" />
 
-                    <!-- Solutions header — more prominent -->
-                    <Label Text="LÖSNINGAR" 
-                           FontSize="13" 
-                           FontAttributes="Bold"
-                           TextColor="{StaticResource TextSecondary}"
-                           CharacterSpacing="1.5"
-                           Margin="0,0,0,16" />
+                    <!-- Solutions header -->
+                    <HorizontalStackLayout Spacing="12" Margin="0,0,0,16">
+                        <Label Text="LÖSNINGAR" 
+                               FontSize="13" 
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource TextSecondary}"
+                               CharacterSpacing="1.5"
+                               VerticalOptions="Center" />
+                        <Button Text="+ Ny lösning"
+                                FontSize="13"
+                                TextColor="{StaticResource Accent}"
+                                BackgroundColor="Transparent"
+                                BorderColor="{StaticResource Accent}"
+                                BorderWidth="1"
+                                CornerRadius="6"
+                                HeightRequest="32"
+                                Padding="12,0"
+                                Clicked="OnAddSolution" />
+                    </HorizontalStackLayout>
 
                     <CollectionView x:Name="SolutionsList"
                                     SelectionMode="Single"

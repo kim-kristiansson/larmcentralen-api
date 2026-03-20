@@ -53,4 +53,9 @@ public partial class AlarmDetailPage : ContentPage
             SolutionsList.SelectedItem = null;
         }
     }
+    
+    private async void OnAddSolution(object? sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new SolutionEditorPage(_api, _alarmId));
+    }
 }
