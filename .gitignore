@@ -8,6 +8,7 @@
 ## Get latest from https://github.com/github/gitignore/blob/main/Dotnet.gitignore
 
 # Default ignored files
+appsettings.*.json
 /shelf/
 /workspace.xml
 # Rider ignored files
