@@ -9,7 +9,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eda7e45f-b65e-4849-981e-42d7c582da1a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Larmcentralen.Application/Services/AreaService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Larmcentralen.Api/Controllers/AreaController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Larmcentralen.Api/Larmcentralen.Api.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Api/Larmcentralen.Api.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,10 +24,14 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Larmcentralen.Api/Controllers/AreaController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Application/DTOs/AlarmDtos.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Application/DTOs/SolutionDtos.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Application/Interfaces/IServices.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Larmcentralen.Application/Services/AlarmService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Application/Services/AreaService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Larmcentralen.Application/Services/EquipmentService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Larmcentralen.Application/Services/SolutionService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Domain/Entities/Area.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Domain/Entities/Solution.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Domain/Interfaces/IAlarmRepository.cs" root0="FORCE_HIGHLIGHTING" />
@@ -114,7 +119,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1773879438852</updated>
-      <workItem from="1773879439767" duration="2964000" />
+      <workItem from="1773879439767" duration="3305000" />
     </task>
     <servers />
   </component>
