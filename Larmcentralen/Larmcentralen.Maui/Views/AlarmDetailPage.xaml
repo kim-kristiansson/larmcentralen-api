@@ -85,6 +85,16 @@
                                 HeightRequest="32"
                                 Padding="12,0"
                                 Clicked="OnAddSolution" />
+                        <Button Text="Exportera .docx"
+                                FontSize="13"
+                                TextColor="{StaticResource TextSecondary}"
+                                BackgroundColor="Transparent"
+                                BorderColor="{StaticResource Border}"
+                                BorderWidth="1"
+                                CornerRadius="6"
+                                HeightRequest="32"
+                                Padding="12,0"
+                                Clicked="OnExport" />
                     </HorizontalStackLayout>
 
                     <CollectionView x:Name="SolutionsList"

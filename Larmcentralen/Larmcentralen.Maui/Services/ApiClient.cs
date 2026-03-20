@@ -46,4 +46,18 @@ public class ApiClient(HttpClient http)
         var response = await http.PutAsJsonAsync($"api/solutions/{id}", dto);
         response.EnsureSuccessStatusCode();
     }
+    
+    // Export alarms
+    public async Task<(byte[] Bytes, string FileName)?> ExportAlarmAsync(int alarmId)
+    {
+        var response = await http.GetAsync($"api/alarms/{alarmId}/export");
+        if (!response.IsSuccessStatusCode) return null;
+
+        var bytes = await response.Content.ReadAsByteArrayAsync();
+        var fileName = response.Content.Headers.ContentDisposition?.FileNameStar
+                       ?? response.Content.Headers.ContentDisposition?.FileName
+                       ?? $"alarm_{alarmId}.docx";
+
+        return (bytes, fileName.Trim('"'));
+    }
 }

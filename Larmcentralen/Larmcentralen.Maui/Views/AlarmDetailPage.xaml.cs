@@ -63,4 +63,29 @@ public partial class AlarmDetailPage : ContentPage
     {
         await Navigation.PopAsync();
     }
+    
+    private async void OnExport(object? sender, EventArgs e)
+    {
+        try
+        {
+            var result = await _api.ExportAlarmAsync(_alarmId);
+            if (result is null)
+            {
+                await DisplayAlertAsync("Fel", "Kunde inte exportera alarm", "OK");
+                return;
+            }
+
+            var (bytes, fileName) = result.Value;
+            var filePath = Path.Combine(FileSystem.CacheDirectory, fileName);
+            await File.WriteAllBytesAsync(filePath, bytes);
+            await Launcher.OpenAsync(new OpenFileRequest
+            {
+                File = new ReadOnlyFile(filePath)
+            });
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlertAsync("Fel", $"Export misslyckades: {ex.Message}", "OK");
+        }
+    }
 }
