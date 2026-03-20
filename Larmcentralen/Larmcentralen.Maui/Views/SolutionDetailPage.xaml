@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:md="clr-namespace:Indiko.Maui.Controls.Markdown;assembly=Indiko.Maui.Controls.Markdown"
+             x:Class="Larmcentralen.Maui.Views.SolutionDetailPage"
+             Title="Lösning">
+
+    <ScrollView Padding="16">
+        <VerticalStackLayout Spacing="8">
+            <Label x:Name="TitleLabel" FontSize="22" FontAttributes="Bold" />
+            <Label x:Name="TimeLabel" FontSize="13" TextColor="Gray" />
+            <BoxView HeightRequest="1" Color="LightGray" Margin="0,8" />
+            <md:MarkdownView x:Name="MarkdownContent" />
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

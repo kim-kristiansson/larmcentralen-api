@@ -21,8 +21,8 @@ public class ApiClient(HttpClient http)
     }
 
     // Solutions
-    public async Task<List<SolutionDto>> GetSolutionsAsync(int alarmId)
+    public async Task<SolutionDto?> GetSolutionAsync(int id)
     {
-        return await http.GetFromJsonAsync<List<SolutionDto>>($"api/solutions/by-alarm/{alarmId}") ?? [];
+        return await http.GetFromJsonAsync<SolutionDto>($"api/solutions/{id}");
     }
 }

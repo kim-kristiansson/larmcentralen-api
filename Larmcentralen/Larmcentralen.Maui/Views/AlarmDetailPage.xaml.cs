@@ -37,6 +37,10 @@ public partial class AlarmDetailPage : ContentPage
 
     private async void OnSolutionSelected(object? sender, SelectionChangedEventArgs e)
     {
-        // We'll navigate to solution detail next
+        if (e.CurrentSelection.FirstOrDefault() is Models.SolutionDto solution)
+        {
+            await Navigation.PushAsync(new SolutionDetailPage(_api, solution.Id));
+            SolutionsList.SelectedItem = null;
+        }
     }
 }
