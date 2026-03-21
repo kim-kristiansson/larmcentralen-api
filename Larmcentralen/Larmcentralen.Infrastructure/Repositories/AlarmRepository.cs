@@ -22,17 +22,39 @@ public class AlarmRepository(AppDbContext db) : Repository<Alarm>(db), IAlarmRep
 
         if (!string.IsNullOrWhiteSpace(search))
         {
-            var pattern = $"%{search}%";
-            query = query.Where(a =>
-                EF.Functions.ILike(a.Title, pattern) ||
-                (a.AlarmCode != null && EF.Functions.ILike(a.AlarmCode, pattern)) ||
-                (a.Description != null && EF.Functions.ILike(a.Description, pattern)) ||
-                EF.Functions.ILike(a.Equipment.Title, pattern) ||
-                EF.Functions.ILike(a.Equipment.Area.Title, pattern));
+            var terms = search.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            foreach (var term in terms)
+            {
+                var startsWith = $"{term}%";
+                var wordStartsWith = $"% {term}%";
+        
+                query = query.Where(a =>
+                    EF.Functions.ILike(a.Title, startsWith) ||
+                    EF.Functions.ILike(a.Title, wordStartsWith) ||
+                    (a.AlarmCode != null && (EF.Functions.ILike(a.AlarmCode, startsWith) || EF.Functions.ILike(a.AlarmCode, wordStartsWith))) ||
+                    (a.Description != null && (EF.Functions.ILike(a.Description, startsWith) || EF.Functions.ILike(a.Description, wordStartsWith))) ||
+                    EF.Functions.ILike(a.Equipment.Title, startsWith) ||
+                    EF.Functions.ILike(a.Equipment.Title, wordStartsWith) ||
+                    (a.Equipment.DisplayName != null && (EF.Functions.ILike(a.Equipment.DisplayName, startsWith) || EF.Functions.ILike(a.Equipment.DisplayName, wordStartsWith))) ||
+                    EF.Functions.ILike(a.Equipment.Area.Title, startsWith) ||
+                    EF.Functions.ILike(a.Equipment.Area.Title, wordStartsWith));
+            }
         }
-
+        
         if (!string.IsNullOrWhiteSpace(severity))
             query = query.Where(a => a.Severity == severity);
+
+        if (!string.IsNullOrWhiteSpace(search))
+        {
+            var firstTerm = search.Split(' ', StringSplitOptions.RemoveEmptyEntries).Last();
+            var startsWithPattern = $"{firstTerm}%";
+    
+            return await query
+                .OrderByDescending(a => EF.Functions.ILike(a.Title, startsWithPattern))
+                .ThenBy(a => a.Title)
+                .Take(50)
+                .ToListAsync();
+        }
 
         return await query.OrderBy(a => a.Title).Take(50).ToListAsync();
     }
