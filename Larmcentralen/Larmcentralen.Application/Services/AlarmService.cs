@@ -7,9 +7,9 @@ namespace Larmcentralen.Application.Services;
 
 public class AlarmService(IAlarmRepository repo) : IAlarmService
 {
-    public async Task<List<AlarmListDto>> SearchAsync(string? search, int? equipmentId, string? severity)
+    public async Task<List<AlarmListDto>> SearchAsync(string? search, int? equipmentId, int? areaId, string? severity)
     {
-        var alarms = await repo.SearchAsync(search, equipmentId, severity);
+        var alarms = await repo.SearchAsync(search, equipmentId, areaId, severity);
 
         return alarms.Select(a => new AlarmListDto(
             a.Id, a.Title, a.AlarmCode, a.Severity,
@@ -80,5 +80,18 @@ public class AlarmService(IAlarmRepository repo) : IAlarmService
         repo.Remove(alarm);
         await repo.SaveChangesAsync();
         return true;
+    }
+    
+    public async Task<List<AlarmListDto>> GetByIdsAsync(List<int> ids)
+    {
+        var alarms = await repo.GetByIdsAsync(ids);
+
+        return ids
+            .Select(id => alarms.FirstOrDefault(a => a.Id == id))
+            .Where(a => a is not null)
+            .Select(a => new AlarmListDto(
+                a!.Id, a.Title, a.AlarmCode, a.Severity,
+                a.Equipment.Title, a.Equipment.Area.Title
+            )).ToList();
     }
 }

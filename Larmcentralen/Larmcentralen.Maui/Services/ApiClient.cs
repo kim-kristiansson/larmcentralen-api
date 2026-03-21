@@ -6,13 +6,17 @@ namespace Larmcentralen.Maui.Services;
 public class ApiClient(HttpClient http)
 {
     // Alarms
-    public async Task<List<AlarmListDto>> SearchAlarmsAsync(string? search = null, string? severity = null)
+    public async Task<List<AlarmListDto>> SearchAlarmsAsync(string? search = null, string? severity = null, int? areaId = null, int? equipmentId = null)
     {
         var parts = new List<string>();
         if (!string.IsNullOrWhiteSpace(search))
             parts.Add($"search={Uri.EscapeDataString(search)}");
         if (!string.IsNullOrWhiteSpace(severity))
             parts.Add($"severity={Uri.EscapeDataString(severity)}");
+        if (areaId.HasValue)
+            parts.Add($"areaId={areaId}");
+        if (equipmentId.HasValue)
+            parts.Add($"equipmentId={equipmentId}");
 
         var url = "api/alarms";
         if (parts.Count > 0)
@@ -103,5 +107,14 @@ public class ApiClient(HttpClient http)
     private class SharePointUploadResult
     {
         public string? Url { get; set; }
+    }
+    
+    
+    public async Task<List<AlarmListDto>> GetAlarmsByIdsAsync(List<int> ids)
+    {
+        if (ids.Count == 0) return [];
+        
+        var query = string.Join("&", ids.Select(id => $"ids={id}"));
+        return await http.GetFromJsonAsync<List<AlarmListDto>>($"api/alarms/by-ids?{query}") ?? [];
     }
 }

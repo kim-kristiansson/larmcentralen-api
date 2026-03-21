@@ -22,11 +22,12 @@ public interface IEquipmentService
 
 public interface IAlarmService
 {
-    Task<List<AlarmListDto>> SearchAsync(string? search, int? equipmentId, string? severity);
+    Task<List<AlarmListDto>> SearchAsync(string? search, int? equipmentId, int? areaId, string? severity);
     Task<AlarmDto?> GetByIdAsync(int id);
     Task<AlarmDto> CreateAsync(CreateAlarmDto dto);
     Task<bool> UpdateAsync(int id, UpdateAlarmDto dto);
     Task<bool> DeleteAsync(int id);
+    Task<List<AlarmListDto>> GetByIdsAsync(List<int> ids);
 }
 
 public interface ISolutionService

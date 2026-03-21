@@ -30,4 +30,13 @@ public class EquipmentRepository(AppDbContext db) : Repository<Equipment>(db), I
         return await Db.Equipment
             .FirstOrDefaultAsync(e => e.Title == title);
     }
+    
+    public new async Task<List<Equipment>> GetAllAsync()
+    {
+        return await Db.Equipment
+            .Include(e => e.Area)
+            .Include(e => e.Alarms)
+            .OrderBy(e => e.Title)
+            .ToListAsync();
+    }
 }

@@ -47,61 +47,50 @@
                        TextChanged="OnSearchTextChanged"
                        SearchButtonPressed="OnSearch" />
 
-            <!-- Filter chips -->
-            <HorizontalStackLayout Spacing="8" 
-                                   HorizontalOptions="Center" 
-                                   Margin="0,16,0,0">
-                <Border StrokeShape="RoundRectangle 16"
-                        Stroke="{StaticResource Border}"
-                        BackgroundColor="{StaticResource Surface}"
-                        Padding="14,8">
-                    <Label Text="Alla" FontSize="13" TextColor="{StaticResource Primary}">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnFilterAll" />
-                        </Label.GestureRecognizers>
-                    </Label>
-                </Border>
-                <Border StrokeShape="RoundRectangle 16"
-                        Stroke="#FECACA"
-                        BackgroundColor="#FEF2F2"
-                        Padding="14,8">
-                    <Label Text="⬣ Kritisk" FontSize="13" TextColor="#991B1B" FontAttributes="Bold">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnFilterKritisk" />
-                        </Label.GestureRecognizers>
-                    </Label>
-                </Border>
-                <Border StrokeShape="RoundRectangle 16"
-                        Stroke="#FED7AA"
-                        BackgroundColor="#FFF7ED"
-                        Padding="14,8">
-                    <Label Text="◆ Hög" FontSize="13" TextColor="#9A3412" FontAttributes="Bold">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnFilterHög" />
-                        </Label.GestureRecognizers>
-                    </Label>
-                </Border>
-                <Border StrokeShape="RoundRectangle 16"
-                        Stroke="#FEF3C7"
-                        BackgroundColor="#FFFBEB"
-                        Padding="14,8">
-                    <Label Text="▲ Medel" FontSize="13" TextColor="#92400E" FontAttributes="Bold">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnFilterMedel" />
-                        </Label.GestureRecognizers>
-                    </Label>
-                </Border>
-                <Border StrokeShape="RoundRectangle 16"
-                        Stroke="#DBEAFE"
-                        BackgroundColor="#EFF6FF"
-                        Padding="14,8">
-                    <Label Text="● Låg" FontSize="13" TextColor="#1E40AF" FontAttributes="Bold">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnFilterLåg" />
-                        </Label.GestureRecognizers>
-                    </Label>
-                </Border>
-            </HorizontalStackLayout>
+            <!-- Filter row -->
+            <Grid ColumnDefinitions="*,*,*"
+                  ColumnSpacing="12"
+                  WidthRequest="600"
+                  Margin="0,16,0,0">
+
+                <!-- Area -->
+                <VerticalStackLayout Grid.Column="0" Spacing="2">
+                    <Label Text="Område" FontSize="11" TextColor="{StaticResource TextSecondary}" />
+                    <Picker x:Name="AreaPicker"
+                            TextColor="{StaticResource Primary}"
+                            FontSize="13"
+                            SelectedIndexChanged="OnAreaFilterChanged" />
+                </VerticalStackLayout>
+
+                <!-- Equipment -->
+                <VerticalStackLayout Grid.Column="1" Spacing="2">
+                    <Label Text="Utrustning" FontSize="11" TextColor="{StaticResource TextSecondary}" />
+                    <Picker x:Name="EquipmentPicker"
+                            TextColor="{StaticResource Primary}"
+                            FontSize="13"
+                            SelectedIndexChanged="OnEquipmentFilterChanged" />
+                </VerticalStackLayout>
+
+                <!-- Severity -->
+                <VerticalStackLayout Grid.Column="2" Spacing="2">
+                    <Label Text="Allvarlighetsgrad" FontSize="11" TextColor="{StaticResource TextSecondary}" />
+                    <Picker x:Name="SeverityFilterPicker"
+                            TextColor="{StaticResource Primary}"
+                            FontSize="13"
+                            SelectedIndexChanged="OnSeverityFilterChanged">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Alla</x:String>
+                                <x:String>Kritisk</x:String>
+                                <x:String>Hög</x:String>
+                                <x:String>Medel</x:String>
+                                <x:String>Låg</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+                </VerticalStackLayout>
+
+            </Grid>
             
             <Button Text="+ Nytt larm"
                     FontSize="13"

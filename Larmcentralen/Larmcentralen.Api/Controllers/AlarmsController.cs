@@ -11,11 +11,13 @@ namespace Larmcentralen.Api.Controllers;
 public class AlarmsController(IAlarmService service, ISolutionService solutionService) : ControllerBase
 {
     [HttpGet]
+    [HttpGet]
     public async Task<ActionResult<List<AlarmListDto>>> GetAll(
         [FromQuery] string? search,
         [FromQuery] int? equipmentId,
+        [FromQuery] int? areaId,
         [FromQuery] string? severity)
-        => Ok(await service.SearchAsync(search, equipmentId, severity));
+        => Ok(await service.SearchAsync(search, equipmentId, areaId, severity));
 
     [HttpGet("{id:int}")]
     public async Task<ActionResult<AlarmDto>> Get(int id)
@@ -65,5 +67,12 @@ public class AlarmsController(IAlarmService service, ISolutionService solutionSe
             return StatusCode(500, "Could not upload to SharePoint");
 
         return Ok(new { url });
+    }
+    
+    [HttpGet("by-ids")]
+    public async Task<ActionResult<List<AlarmListDto>>> GetByIds([FromQuery] List<int> ids)
+    {
+        var alarms = await service.GetByIdsAsync(ids);
+        return Ok(alarms);
     }
 }
