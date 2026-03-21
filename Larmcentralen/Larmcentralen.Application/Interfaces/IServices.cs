@@ -22,7 +22,7 @@ public interface IEquipmentService
 
 public interface IAlarmService
 {
-    Task<List<AlarmListDto>> SearchAsync(string? search, int? equipmentId, int? areaId, string? severity);
+    Task<List<AlarmListDto>> SearchAsync(string? search, int? equipmentId, int? areaId, string? severity, int skip = 0, int take = 10);
     Task<AlarmDto?> GetByIdAsync(int id);
     Task<AlarmDto> CreateAsync(CreateAlarmDto dto);
     Task<bool> UpdateAsync(int id, UpdateAlarmDto dto);

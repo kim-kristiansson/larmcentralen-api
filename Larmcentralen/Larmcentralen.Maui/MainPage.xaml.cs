@@ -6,8 +6,12 @@ namespace Larmcentralen.Maui;
 
 public partial class MainPage : ContentPage
 {
+    private List<AlarmListDto> _allResults = [];
+    private bool _isLoadingMore;
+    private bool _hasMoreResults = true;
+    private string? _currentSearch;
+    
     private readonly ApiClient _api;
-    private CancellationTokenSource? _debounce;
 
     private List<AreaDto> _areas = [];
     private List<EquipmentDto> _allEquipment = [];
@@ -15,6 +19,11 @@ public partial class MainPage : ContentPage
     private int? _selectedAreaId;
     private int? _selectedEquipmentId;
     private string? _selectedSeverity;
+    
+    private DateTime _lastSearch = DateTime.MinValue;
+    private CancellationTokenSource? _debounce;
+    
+    private CancellationTokenSource? _searchCts;
 
     public MainPage(ApiClient api)
     {
@@ -126,13 +135,26 @@ public partial class MainPage : ContentPage
             return;
         }
 
+        _searchCts?.Cancel();
+        _searchCts = new CancellationTokenSource();
+        var token = _searchCts.Token;
+
         try
         {
             LoadingIndicator.IsVisible = true;
             LoadingIndicator.IsRunning = true;
             ResultCount.Text = "";
 
-            var alarms = await _api.SearchAlarmsAsync(search, _selectedSeverity, _selectedAreaId, _selectedEquipmentId);
+            _currentSearch = search;
+            _allResults = [];
+            _hasMoreResults = true;
+
+            var alarms = await _api.SearchAlarmsAsync(search, _selectedSeverity, _selectedAreaId, _selectedEquipmentId, 0, 10);
+
+            if (token.IsCancellationRequested) return;
+
+            _allResults = alarms;
+            _hasMoreResults = alarms.Count == 10;
 
             if (alarms.Count == 0)
             {
@@ -140,7 +162,7 @@ public partial class MainPage : ContentPage
                 EmptySubtitle.IsVisible = false;
             }
 
-            AlarmList.ItemsSource = alarms;
+            AlarmList.ItemsSource = _allResults;
 
             ResultCount.Text = alarms.Count switch
             {
@@ -148,20 +170,60 @@ public partial class MainPage : ContentPage
                 1 => "1 larm",
                 _ => $"{alarms.Count} larm"
             };
+            
+            LoadMoreButton.IsVisible = _hasMoreResults;
         }
-        catch (Exception ex)
+        catch (Exception ex) when (ex is not OperationCanceledException)
         {
             await DisplayAlertAsync("Fel", $"Kunde inte hämta larm: {ex.Message}", "OK");
         }
         finally
         {
-            LoadingIndicator.IsRunning = false;
-            LoadingIndicator.IsVisible = false;
+            if (!token.IsCancellationRequested)
+            {
+                LoadingIndicator.IsRunning = false;
+                LoadingIndicator.IsVisible = false;
+            }
+        }
+    }
+
+    private async void OnLoadMore(object? sender, EventArgs e)
+    {
+        if (_isLoadingMore || !_hasMoreResults || string.IsNullOrWhiteSpace(_currentSearch)) return;
+
+        _isLoadingMore = true;
+        LoadMoreButton.Text = "Laddar...";
+
+        try
+        {
+            var more = await _api.SearchAlarmsAsync(_currentSearch, _selectedSeverity, _selectedAreaId, _selectedEquipmentId, _allResults.Count, 10);
+
+            if (more.Count == 0)
+            {
+                _hasMoreResults = false;
+                LoadMoreButton.IsVisible = false;
+                return;
+            }
+
+            _allResults.AddRange(more);
+            _hasMoreResults = more.Count == 10;
+            AlarmList.ItemsSource = null;
+            AlarmList.ItemsSource = _allResults;
+            ResultCount.Text = $"{_allResults.Count} larm";
+            LoadMoreButton.IsVisible = _hasMoreResults;
+        }
+        catch { }
+        finally
+        {
+            _isLoadingMore = false;
+            LoadMoreButton.Text = "Visa fler...";
         }
     }
 
     private async Task LoadRecentAlarms()
     {
+        LoadMoreButton.IsVisible = false;
+        
         var recentIds = RecentAlarmsHelper.Get();
         if (recentIds.Count == 0)
         {
@@ -204,16 +266,29 @@ public partial class MainPage : ContentPage
             return;
         }
 
-        Task.Delay(300, token).ContinueWith(_ =>
+        var timeSinceLast = DateTime.UtcNow - _lastSearch;
+
+        if (timeSinceLast.TotalMilliseconds > 1000)
         {
-            if (!token.IsCancellationRequested)
+            // Fire immediately if it's been a while
+            _lastSearch = DateTime.UtcNow;
+            LoadAlarms(e.NewTextValue);
+        }
+        else
+        {
+            // Debounce subsequent keystrokes
+            Task.Delay(600, token).ContinueWith(_ =>
             {
-                MainThread.BeginInvokeOnMainThread(() =>
+                if (!token.IsCancellationRequested)
                 {
-                    LoadAlarms(e.NewTextValue);
-                });
-            }
-        }, TaskScheduler.Default);
+                    MainThread.BeginInvokeOnMainThread(() =>
+                    {
+                        _lastSearch = DateTime.UtcNow;
+                        LoadAlarms(e.NewTextValue);
+                    });
+                }
+            }, TaskScheduler.Default);
+        }
     }
 
     private async void OnAddAlarm(object? sender, EventArgs e)

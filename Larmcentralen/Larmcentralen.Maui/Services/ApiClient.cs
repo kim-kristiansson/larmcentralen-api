@@ -6,7 +6,7 @@ namespace Larmcentralen.Maui.Services;
 public class ApiClient(HttpClient http)
 {
     // Alarms
-    public async Task<List<AlarmListDto>> SearchAlarmsAsync(string? search = null, string? severity = null, int? areaId = null, int? equipmentId = null)
+    public async Task<List<AlarmListDto>> SearchAlarmsAsync(string? search = null, string? severity = null, int? areaId = null, int? equipmentId = null, int skip = 0, int take = 10)
     {
         var parts = new List<string>();
         if (!string.IsNullOrWhiteSpace(search))
@@ -17,6 +17,9 @@ public class ApiClient(HttpClient http)
             parts.Add($"areaId={areaId}");
         if (equipmentId.HasValue)
             parts.Add($"equipmentId={equipmentId}");
+        if (skip > 0)
+            parts.Add($"skip={skip}");
+        parts.Add($"take={take}");
 
         var url = "api/alarms";
         if (parts.Count > 0)

@@ -12,12 +12,15 @@ public class AlarmsController(IAlarmService service, ISolutionService solutionSe
 {
     [HttpGet]
     [HttpGet]
+    [HttpGet]
     public async Task<ActionResult<List<AlarmListDto>>> GetAll(
         [FromQuery] string? search,
         [FromQuery] int? equipmentId,
         [FromQuery] int? areaId,
-        [FromQuery] string? severity)
-        => Ok(await service.SearchAsync(search, equipmentId, areaId, severity));
+        [FromQuery] string? severity,
+        [FromQuery] int skip = 0,
+        [FromQuery] int take = 10)
+        => Ok(await service.SearchAsync(search, equipmentId, areaId, severity, skip, take));
 
     [HttpGet("{id:int}")]
     public async Task<ActionResult<AlarmDto>> Get(int id)

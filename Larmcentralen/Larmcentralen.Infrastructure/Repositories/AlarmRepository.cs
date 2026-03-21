@@ -7,7 +7,7 @@ namespace Larmcentralen.Infrastructure.Repositories;
 
 public class AlarmRepository(AppDbContext db) : Repository<Alarm>(db), IAlarmRepository
 {
-    public async Task<List<Alarm>> SearchAsync(string? search, int? equipmentId, int? areaId, string? severity)
+    public async Task<List<Alarm>> SearchAsync(string? search, int? equipmentId, int? areaId, string? severity, int skip = 0, int take = 10)
     {
         var query = Db.Alarms
             .Include(a => a.Equipment)
@@ -48,15 +48,16 @@ public class AlarmRepository(AppDbContext db) : Repository<Alarm>(db), IAlarmRep
         {
             var firstTerm = search.Split(' ', StringSplitOptions.RemoveEmptyEntries).Last();
             var startsWithPattern = $"{firstTerm}%";
-    
+
             return await query
                 .OrderByDescending(a => EF.Functions.ILike(a.Title, startsWithPattern))
                 .ThenBy(a => a.Title)
-                .Take(50)
+                .Skip(skip)
+                .Take(take)
                 .ToListAsync();
         }
 
-        return await query.OrderBy(a => a.Title).Take(50).ToListAsync();
+        return await query.OrderBy(a => a.Title).Skip(skip).Take(take).ToListAsync();
     }
 
     public async Task<Alarm?> GetByIdWithDetailsAsync(int id)

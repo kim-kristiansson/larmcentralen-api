@@ -7,9 +7,9 @@ namespace Larmcentralen.Application.Services;
 
 public class AlarmService(IAlarmRepository repo) : IAlarmService
 {
-    public async Task<List<AlarmListDto>> SearchAsync(string? search, int? equipmentId, int? areaId, string? severity)
+    public async Task<List<AlarmListDto>> SearchAsync(string? search, int? equipmentId, int? areaId, string? severity, int skip = 0, int take = 10)
     {
-        var alarms = await repo.SearchAsync(search, equipmentId, areaId, severity);
+        var alarms = await repo.SearchAsync(search, equipmentId, areaId, severity, skip, take);
 
         return alarms.Select(a => new AlarmListDto(
             a.Id, a.Title, a.AlarmCode, a.Severity,

@@ -105,23 +105,27 @@
         </VerticalStackLayout>
 
         <!-- Results -->
-        <VerticalStackLayout Grid.Row="1" Margin="0,0,0,0">
-            
+        <Grid Grid.Row="1" RowDefinitions="Auto,*,Auto">
+
             <!-- Result count -->
             <Label x:Name="ResultCount" 
+                   Grid.Row="0"
                    FontSize="13" 
                    TextColor="{StaticResource TextSecondary}"
                    HorizontalOptions="Center"
                    Margin="0,0,0,8" />
 
+            <!-- Loading -->
             <ActivityIndicator x:Name="LoadingIndicator"
+                               Grid.Row="0"
                                IsRunning="False"
                                IsVisible="False"
                                Color="{StaticResource Accent}"
                                HorizontalOptions="Center"
                                Margin="0,24,0,0" />
-            
+
             <CollectionView x:Name="AlarmList"
+                            Grid.Row="1"
                             SelectionMode="Single"
                             SelectionChanged="OnAlarmSelected">
                 <CollectionView.ItemsLayout>
@@ -137,15 +141,11 @@
                                     Padding="20,16"
                                     Margin="0,4">
                                 <Grid ColumnDefinitions="4,*,Auto" ColumnSpacing="16">
-
-                                    <!-- Severity color bar -->
                                     <BoxView Grid.Column="0"
                                              WidthRequest="4"
                                              CornerRadius="2"
                                              Color="{Binding Severity, Converter={StaticResource SevText}}"
                                              VerticalOptions="Fill" />
-
-                                    <!-- Content -->
                                     <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="3">
                                         <Label Text="{Binding Title}" 
                                                FontSize="17" 
@@ -168,8 +168,6 @@
                                             </Label>
                                         </HorizontalStackLayout>
                                     </VerticalStackLayout>
-
-                                    <!-- Severity badge -->
                                     <Border Grid.Column="2"
                                             BackgroundColor="{Binding Severity, Converter={StaticResource SevBg}}"
                                             StrokeThickness="0"
@@ -187,7 +185,6 @@
                                             </Label.FormattedText>
                                         </Label>
                                     </Border>
-
                                 </Grid>
                             </Border>
                         </Grid>
@@ -208,7 +205,20 @@
                     </VerticalStackLayout>
                 </CollectionView.EmptyView>
             </CollectionView>
-        </VerticalStackLayout>
+
+            <!-- Load more -->
+            <Button x:Name="LoadMoreButton"
+                    Grid.Row="2"
+                    Text="Visa fler..."
+                    FontSize="13"
+                    TextColor="{StaticResource TextSecondary}"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="Center"
+                    IsVisible="False"
+                    Clicked="OnLoadMore"
+                    Margin="0,8,0,16" />
+
+        </Grid>
 
     </Grid>
 
