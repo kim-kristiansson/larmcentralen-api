@@ -34,11 +34,15 @@ builder.Services.AddScoped<IEquipmentService, EquipmentService>();
 builder.Services.AddScoped<IAlarmService, AlarmService>();
 builder.Services.AddScoped<ISolutionService, SolutionService>();
 builder.Services.AddScoped<ISharePointSyncService, SharePointSyncService>();
+builder.Services.AddScoped<SharePointUploadService>();
 builder.Services.AddScoped<ExportService>();
+builder.Services.AddScoped<SmsAlarmService>();
 
+// Configurations
+builder.Services.Configure<EmailOptions>(
+    builder.Configuration.GetSection("Email"));
 builder.Services.Configure<SharePointOptions>(
     builder.Configuration.GetSection("SharePoint"));
-builder.Services.AddScoped<SharePointUploadService>();
 
 var app = builder.Build();
 

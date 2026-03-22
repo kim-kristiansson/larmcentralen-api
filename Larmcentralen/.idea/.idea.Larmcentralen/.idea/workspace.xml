@@ -13,15 +13,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eda7e45f-b65e-4849-981e-42d7c582da1a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Larmcentralen.Api/Controllers/WebhooksController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Larmcentralen.Api/Services/SmsAlarmService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Larmcentralen/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Larmcentralen/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Larmcentralen.Api/Controllers/AlarmsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Api/Controllers/AlarmsController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Larmcentralen.Application/Interfaces/IServices.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Application/Interfaces/IServices.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Larmcentralen.Application/Services/AlarmService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Application/Services/AlarmService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Larmcentralen.Domain/Interfaces/IAlarmRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Domain/Interfaces/IAlarmRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Larmcentralen.Infrastructure/Repositories/AlarmRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Infrastructure/Repositories/AlarmRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Larmcentralen.Maui/MainPage.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Maui/MainPage.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Larmcentralen.Maui/MainPage.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Maui/MainPage.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Larmcentralen.Maui/Services/ApiClient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Maui/Services/ApiClient.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Larmcentralen.Api/Larmcentralen.Api.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Api/Larmcentralen.Api.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Larmcentralen.Api/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Api/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Larmcentralen.Api/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Api/appsettings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,8 +43,10 @@
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Api/Controllers/AreaController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Api/Controllers/EquipmentController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Api/Controllers/SolutionsController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Larmcentralen.Api/Controllers/WebhooksController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Api/Services/SharePointSyncService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Api/Services/SharePointUploadService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Larmcentralen.Api/Services/SmsAlarmService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Application/DTOs/AlarmDtos.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Application/DTOs/SolutionDtos.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Application/Interfaces/IServices.cs" root0="FORCE_HIGHLIGHTING" />
@@ -128,7 +127,7 @@
     ]
   }
 }]]></component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.Larmcentralen.Maui: Windows Machine">
+  <component name="RunManager" selected=".NET Launch Settings Profile.Larmcentralen.Api: http">
     <configuration name="Larmcentralen.Api: http" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/Larmcentralen.Api/Larmcentralen.Api.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net10.0" />
