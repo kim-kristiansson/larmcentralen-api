@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="quill.snow.css" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: transparent; }
+    #editor { font-size: 15px; line-height: 1.6; min-height: 400px; }
+    .ql-toolbar { border-top: none; border-left: none; border-right: none; border-bottom: 1px solid #E2E8F0; background: #F8FAFC; }
+    .ql-container { border: none; font-family: 'Segoe UI', Arial, sans-serif; }
+    .ql-editor { padding: 16px; }
+    .ql-editor h1 { font-size: 26px; margin-bottom: 8px; }
+    .ql-editor h2 { font-size: 22px; margin-bottom: 6px; }
+    .ql-editor h3 { font-size: 18px; margin-bottom: 4px; }
+    .ql-editor blockquote { border-left: 4px solid #D97706; background: #FEF3C7; padding: 10px 16px; margin: 8px 0; color: #92400E; }
+    .ql-editor pre { background: #F1F5F9; padding: 12px; border-radius: 6px; font-family: Consolas, monospace; font-size: 13px; }
+    .ql-editor code { background: #F1F5F9; padding: 2px 6px; border-radius: 3px; font-family: Consolas, monospace; font-size: 13px; }
+    .ql-editor table { border-collapse: collapse; width: 100%; margin: 8px 0; }
+    .ql-editor table td { border: 1px solid #E2E8F0; padding: 8px; }
+  </style>
+</head>
+<body>
+<div id="editor"></div>
+<script src="quill.js"></script>
+<script>
+  const quill = new Quill('#editor', {
+    theme: 'snow',
+    modules: {
+      toolbar: [
+        [{ 'header': [1, 2, 3, false] }],
+        ['bold', 'italic', 'underline', 'strike'],
+        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+        ['blockquote', 'code-block'],
+        ['link'],
+        [{ 'indent': '-1' }, { 'indent': '+1' }],
+        ['clean']
+      ]
+    },
+    placeholder: 'Skriv lösningen här...'
+  });
+
+  function getHtml() {
+    return quill.root.innerHTML;
+  }
+
+  function setHtml(html) {
+    quill.root.innerHTML = html;
+  }
+
+  function getHtmlBase64() {
+    return btoa(new TextEncoder().encode(quill.root.innerHTML).reduce((s, b) => s + String.fromCharCode(b), ''));
+  }
+
+  function setHtmlBase64(b64) {
+    const bytes = Uint8Array.from(atob(b64), c => c.charCodeAt(0));
+    quill.root.innerHTML = new TextDecoder().decode(bytes);
+  }
+
+  function getLength() {
+    return quill.getLength();
+  }
+</script>
+</body>
+</html>

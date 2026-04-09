@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Larmcentralen.Maui.Views.LoadingPage"
+             BackgroundColor="{StaticResource Background}"
+             Shell.NavBarIsVisible="False">
+
+    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="12">
+        <Label Text="Larmcentralen" 
+               FontSize="32" 
+               FontAttributes="Bold" 
+               TextColor="{StaticResource Accent}" 
+               HorizontalOptions="Center" />
+        <Label Text="Laddar..." 
+               FontSize="14" 
+               TextColor="{StaticResource TextSecondary}" 
+               HorizontalOptions="Center" />
+        <!-- Hidden container for WebView preload -->
+        <Grid x:Name="PreloadContainer" HeightRequest="0" WidthRequest="0" IsVisible="False" />
+    </VerticalStackLayout>
+
+</ContentPage>

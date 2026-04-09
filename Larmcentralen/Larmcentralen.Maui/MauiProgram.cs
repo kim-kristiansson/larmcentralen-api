@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui;
 using Larmcentralen.Maui.Services;
+using Larmcentralen.Maui.Views;
 using Microsoft.Extensions.Logging;
 
 namespace Larmcentralen.Maui;
@@ -22,6 +23,9 @@ public static class MauiProgram
 			BaseAddress = new Uri("http://localhost:5270/")
 		});
 		builder.Services.AddSingleton<ApiClient>();
+		builder.Services.AddSingleton<WebViewPool>();
+		
+		builder.Services.AddTransient<LoadingPage>();
 		builder.Services.AddTransient<MainPage>();
 		
 		builder

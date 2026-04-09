@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:md="clr-namespace:Indiko.Maui.Controls.Markdown;assembly=Indiko.Maui.Controls.Markdown"
              x:Class="Larmcentralen.Maui.Views.SolutionEditorPage"
              BackgroundColor="{StaticResource Background}"
              Shell.NavBarIsVisible="False">
@@ -64,50 +63,10 @@
             </VerticalStackLayout>
         </Grid>
 
-        <!-- Split view: Editor + Preview -->
-        <Grid Grid.Row="2" 
-              HorizontalOptions="Fill"
-              Padding="48,0"
-              ColumnDefinitions="*,*"
-              ColumnSpacing="16">
-
-            <!-- Editor -->
-            <Grid Grid.Column="0" RowDefinitions="Auto,*" RowSpacing="4">
-                <Label Text="MARKDOWN" 
-                       FontSize="11" 
-                       FontAttributes="Bold"
-                       TextColor="{StaticResource TextSecondary}"
-                       CharacterSpacing="1"
-                       Grid.Row="0" />
-                <ScrollView Grid.Row="1" VerticalScrollBarVisibility="Default">
-                    <Editor x:Name="MarkdownEditor"
-                            Placeholder="Skriv markdown här..."
-                            PlaceholderColor="{StaticResource TextSecondary}"
-                            TextColor="{StaticResource Primary}"
-                            FontSize="14"
-                            FontFamily="Consolas"
-                            AutoSize="TextChanges"
-                            TextChanged="OnMarkdownChanged" />
-                </ScrollView>
-            </Grid>
-
-            <!-- Preview -->
-            <Grid Grid.Column="1" RowDefinitions="Auto,*" RowSpacing="0">
-                <Label Text="FÖRHANDSGRANSKNING" 
-                       FontSize="11" 
-                       FontAttributes="Bold"
-                       TextColor="{StaticResource TextSecondary}"
-                       CharacterSpacing="1"
-                       Margin="0,0,0,4"
-                       Grid.Row="0" />
-                <ScrollView Grid.Row="1" VerticalScrollBarVisibility="Default">
-                    <VerticalStackLayout Padding="0,12,0,0">
-                        <md:MarkdownView x:Name="Preview" HorizontalOptions="Fill" />
-                    </VerticalStackLayout>
-                </ScrollView>
-            </Grid>
-
-        </Grid>
+        <!-- Replace the WebView with a placeholder Grid -->
+        <Grid x:Name="EditorContainer"
+              Grid.Row="2"
+              HorizontalOptions="Fill" />
 
         <!-- Status bar -->
         <Label x:Name="StatusLabel"
@@ -116,7 +75,6 @@
                TextColor="{StaticResource TextSecondary}"
                HorizontalOptions="Center"
                Margin="0,8,0,16" />
-
     </Grid>
 
 </ContentPage>

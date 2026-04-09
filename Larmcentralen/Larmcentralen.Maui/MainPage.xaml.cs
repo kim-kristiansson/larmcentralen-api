@@ -24,11 +24,13 @@ public partial class MainPage : ContentPage
     private CancellationTokenSource? _debounce;
     
     private CancellationTokenSource? _searchCts;
+    private readonly WebViewPool _pool;
 
-    public MainPage(ApiClient api)
+    public MainPage(ApiClient api, WebViewPool pool)
     {
         InitializeComponent();
         _api = api;
+        _pool = pool;
         SeverityFilterPicker.SelectedIndex = 0;
         LoadFilters();
     }
@@ -301,7 +303,7 @@ public partial class MainPage : ContentPage
         if (e.CurrentSelection.FirstOrDefault() is AlarmListDto alarm)
         {
             RecentAlarmsHelper.Add(alarm.Id);
-            await Navigation.PushAsync(new Views.AlarmDetailPage(_api, alarm.Id));
+            await Navigation.PushAsync(new Views.AlarmDetailPage(_api, _pool, alarm.Id));
             AlarmList.SelectedItem = null;
         }
     }

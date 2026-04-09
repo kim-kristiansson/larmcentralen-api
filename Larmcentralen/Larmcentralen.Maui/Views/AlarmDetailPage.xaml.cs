@@ -9,11 +9,13 @@ public partial class AlarmDetailPage : ContentPage
     private readonly ApiClient _api;
     private readonly int _alarmId;
     private string _severity = "";
+    private readonly WebViewPool _pool;
 
-    public AlarmDetailPage(ApiClient api, int alarmId)
+    public AlarmDetailPage(ApiClient api, WebViewPool pool, int alarmId)
     {
         InitializeComponent();
         _api = api;
+        _pool = pool;
         _alarmId = alarmId;
     }
     
@@ -63,14 +65,14 @@ public partial class AlarmDetailPage : ContentPage
     {
         if (e.CurrentSelection.FirstOrDefault() is Models.SolutionDto solution)
         {
-            await Navigation.PushAsync(new SolutionDetailPage(_api, solution.Id, _severity));
+            await Navigation.PushAsync(new SolutionDetailPage(_api, _pool, solution.Id, _severity));
             SolutionsList.SelectedItem = null;
         }
     }
     
     private async void OnAddSolution(object? sender, EventArgs e)
     {
-        await Navigation.PushAsync(new SolutionEditorPage(_api, _alarmId));
+        await Navigation.PushAsync(new SolutionEditorPage(_api, _pool, _alarmId));
     }
     
     private async void OnBackTapped(object? sender, TappedEventArgs e)

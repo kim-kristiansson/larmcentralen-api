@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:md="clr-namespace:Indiko.Maui.Controls.Markdown;assembly=Indiko.Maui.Controls.Markdown"
              x:Class="Larmcentralen.Maui.Views.SolutionDetailPage"
              BackgroundColor="{StaticResource Background}"
              Shell.NavBarIsVisible="False">
@@ -80,8 +79,8 @@
 
                     <BoxView Style="{StaticResource Divider}" Margin="0,20" />
 
-                    <!-- Markdown content directly on page -->
-                    <md:MarkdownView x:Name="MarkdownContent" HorizontalOptions="Fill" />
+                    <Grid x:Name="ContentContainer" 
+                          HorizontalOptions="Fill" />
 
                 </VerticalStackLayout>
             </Grid>

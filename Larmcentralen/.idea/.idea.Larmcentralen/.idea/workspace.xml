@@ -13,12 +13,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eda7e45f-b65e-4849-981e-42d7c582da1a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Larmcentralen.Api/Controllers/WebhooksController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Larmcentralen.Api/Services/SmsAlarmService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Larmcentralen.Maui/Resources/Raw/quill/editor.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Larmcentralen.Maui/Resources/Raw/quill/viewer.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Larmcentralen.Maui/Services/WebViewPool.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Larmcentralen.Maui/Views/LoadingPage.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Larmcentralen.Maui/Views/LoadingPage.xaml.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Larmcentralen/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Larmcentralen/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Larmcentralen.Api/Larmcentralen.Api.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Api/Larmcentralen.Api.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Larmcentralen.Api/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Api/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Larmcentralen.Api/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Api/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Larmcentralen.Application/Larmcentralen.Application.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Application/Larmcentralen.Application.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Larmcentralen.Application/Services/ExportService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Application/Services/ExportService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Larmcentralen.Application/Services/MarkdownToWordConverter.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Larmcentralen.Maui/App.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Maui/App.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Larmcentralen.Maui/Helpers/MarkdownThemeHelper.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Larmcentralen.Maui/Larmcentralen.Maui.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Maui/Larmcentralen.Maui.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Larmcentralen.Maui/MainPage.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Maui/MainPage.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Larmcentralen.Maui/MauiProgram.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Maui/MauiProgram.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Larmcentralen.Maui/Views/AlarmDetailPage.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Maui/Views/AlarmDetailPage.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Larmcentralen.Maui/Views/SolutionDetailPage.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Maui/Views/SolutionDetailPage.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Larmcentralen.Maui/Views/SolutionDetailPage.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Maui/Views/SolutionDetailPage.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Larmcentralen.Maui/Views/SolutionEditorPage.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Maui/Views/SolutionEditorPage.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Larmcentralen.Maui/Views/SolutionEditorPage.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Larmcentralen.Maui/Views/SolutionEditorPage.xaml.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +45,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="XML File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -55,7 +69,6 @@
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Application/Services/AreaService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Application/Services/EquipmentService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Application/Services/ExportService.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Larmcentralen.Application/Services/MarkdownToWordConverter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Application/Services/SharePointOptions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Application/Services/SolutionService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Domain/Entities/Area.cs" root0="FORCE_HIGHLIGHTING" />
@@ -72,7 +85,6 @@
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Infrastructure/Repositories/Repository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Infrastructure/Repositories/SolutionRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Maui/Converters/SeverityConverter.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Larmcentralen.Maui/Helpers/MarkdownThemeHelper.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Maui/Helpers/RecentAlarmsHelper.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Maui/MainPage.xaml" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Maui/MainPage.xaml.cs" root0="FORCE_HIGHLIGHTING" />
@@ -83,8 +95,10 @@
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Maui/Models/CreateSolutionDto.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Maui/Models/EquipmentDto.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Maui/Services/ApiClient.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Larmcentralen.Maui/Services/WebViewPool.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Maui/Views/AlarmDetailPage.xaml.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Maui/Views/AlarmEditorPage.xaml.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Larmcentralen.Maui/Views/LoadingPage.xaml.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Maui/Views/SolutionDetailPage.xaml.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Larmcentralen.Maui/Views/SolutionEditorPage.xaml.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -108,11 +122,13 @@
   "keyToString": {
     ".NET Launch Settings Profile.Larmcentralen.Api: http.executor": "Run",
     ".NET Launch Settings Profile.Larmcentralen.Maui: Windows Machine.executor": "Run",
+    "DefaultHtmlFileTemplate": "HTML File",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "feature/rich-text-editor",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -127,7 +143,7 @@
     ]
   }
 }]]></component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.Larmcentralen.Api: http">
+  <component name="RunManager" selected=".NET Launch Settings Profile.Larmcentralen.Maui: Windows Machine">
     <configuration name="Larmcentralen.Api: http" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/Larmcentralen.Api/Larmcentralen.Api.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net10.0" />
@@ -209,6 +225,7 @@
       <option name="presentableId" value="Default" />
       <updated>1773879438852</updated>
       <workItem from="1773879439767" duration="24044000" />
+      <workItem from="1775730320497" duration="3887000" />
     </task>
     <servers />
   </component>

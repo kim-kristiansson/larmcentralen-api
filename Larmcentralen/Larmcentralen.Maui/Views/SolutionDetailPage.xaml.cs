@@ -1,7 +1,4 @@
-﻿using Indiko.Maui.Controls.Markdown;
-using Indiko.Maui.Controls.Markdown.Theming;
-using Larmcentralen.Maui.Converters;
-using Larmcentralen.Maui.Helpers;
+﻿using Larmcentralen.Maui.Converters;
 using Larmcentralen.Maui.Models;
 using Larmcentralen.Maui.Services;
 
@@ -10,19 +7,53 @@ namespace Larmcentralen.Maui.Views;
 public partial class SolutionDetailPage : ContentPage
 {
     private readonly ApiClient _api;
+    private readonly WebViewPool _pool;
     private readonly int _solutionId;
     private readonly string _severity;
     private SolutionDto? _solution;
-    
-    public SolutionDetailPage(ApiClient api, int solutionId, string severity)
+
+    public SolutionDetailPage(ApiClient api, WebViewPool pool, int solutionId, string severity)
     {
         InitializeComponent();
         _api = api;
+        _pool = pool;
         _solutionId = solutionId;
         _severity = severity;
         ApplySeverity();
-        ApplyMarkdownTheme();
-        LoadSolution();
+    }
+
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        _pool.DetachViewer();
+        ContentContainer.Children.Add(_pool.ViewerView);
+    
+        _pool.ViewerView.Navigating += OnViewerNavigating;
+        
+        _pool.ViewerView.InputTransparent = true;
+    
+        await LoadSolution();
+    }
+
+    protected override void OnDisappearing()
+    {
+        base.OnDisappearing();
+        _pool.ViewerView.Navigating -= OnViewerNavigating;
+        _pool.DetachViewer();
+        _pool.ViewerView.InputTransparent = false;
+    }
+
+    private void OnViewerNavigating(object? sender, WebNavigatingEventArgs e)
+    {
+        if (e.Url.StartsWith("invoke://resize/"))
+        {
+            e.Cancel = true;
+            var heightStr = e.Url.Replace("invoke://resize/", "");
+            if (double.TryParse(heightStr, out var height))
+            {
+                _pool.ViewerView.HeightRequest = height;
+            }
+        }
     }
 
     private void ApplySeverity()
@@ -35,12 +66,7 @@ public partial class SolutionDetailPage : ContentPage
         SeverityLabel.Text = $"{sevIcon.Convert(_severity, typeof(string), null, null)} {_severity}";
     }
 
-    private void ApplyMarkdownTheme()
-    {
-        MarkdownContent.Theme = MarkdownThemeHelper.Create();
-    }
-
-    private async void LoadSolution()
+    private async Task LoadSolution()
     {
         try
         {
@@ -52,7 +78,11 @@ public partial class SolutionDetailPage : ContentPage
 
             TitleLabel.Text = _solution.Title;
             TimeLabel.Text = _solution.EstimatedTime != null ? $"Uppskattad tid: {_solution.EstimatedTime}" : "";
-            MarkdownContent.MarkdownText = _solution.Content ?? "";
+
+            await _pool.WaitForViewer();
+            var content = _solution.Content ?? "";
+            var base64 = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(content));
+            await _pool.ViewerView.EvaluateJavaScriptAsync($"setHtmlBase64('{base64}')");
         }
         catch (Exception ex)
         {
@@ -69,27 +99,21 @@ public partial class SolutionDetailPage : ContentPage
     {
         await Navigation.PopAsync();
     }
-    
+
     private async void OnEditTapped(object? sender, EventArgs e)
     {
         if (_solution is null) return;
-        await Navigation.PushAsync(new SolutionEditorPage(_api, _solution.AlarmId, _solution));
+        await Navigation.PushAsync(new SolutionEditorPage(_api, _pool, _solution.AlarmId, _solution));
     }
-    
-    protected override void OnAppearing()
-    {
-        base.OnAppearing();
-        LoadSolution();
-    }
-    
+
     private async void OnDeleteTapped(object? sender, EventArgs e)
     {
         if (_solution is null) return;
 
         var confirm = await DisplayAlertAsync(
-            "Ta bort lösning", 
-            $"Vill du ta bort \"{_solution.Title}\"? Detta kan inte ångras.", 
-            "Ta bort", 
+            "Ta bort lösning",
+            $"Vill du ta bort \"{_solution.Title}\"? Detta kan inte ångras.",
+            "Ta bort",
             "Avbryt");
 
         if (!confirm) return;
