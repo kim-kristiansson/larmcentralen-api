@@ -35,7 +35,7 @@
         </Grid>
 
         <ScrollView Grid.Row="1">
-            <VerticalStackLayout WidthRequest="600" HorizontalOptions="Center" Padding="24,8,24,48" Spacing="20">
+            <VerticalStackLayout Style="{StaticResource ContentContainer}">
 
                 <!-- Title -->
                 <VerticalStackLayout Spacing="4">

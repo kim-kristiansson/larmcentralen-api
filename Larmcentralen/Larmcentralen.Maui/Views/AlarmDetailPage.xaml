@@ -27,7 +27,7 @@
         
         <ScrollView Grid.Row="1">
             <Grid HorizontalOptions="Fill">
-                <VerticalStackLayout WidthRequest="900" HorizontalOptions="Center" Padding="32,160,32,48" Spacing="0">
+                <VerticalStackLayout Style="{StaticResource ContentContainer}">
 
                     <ActivityIndicator x:Name="LoadingIndicator"
                                        IsRunning="False"

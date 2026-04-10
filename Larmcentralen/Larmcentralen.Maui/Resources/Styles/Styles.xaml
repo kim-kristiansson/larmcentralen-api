@@ -83,5 +83,10 @@
         <Setter Property="FontSize" Value="15" />
         <Setter Property="HeightRequest" Value="48" />
     </Style>
-
+    
+    <Style x:Key="ContentContainer" TargetType="Grid">
+        <Setter Property="WidthRequest" Value="900" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="Padding" Value="32,0" />
+    </Style>
 </ResourceDictionary>
